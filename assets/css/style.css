@@ -1,0 +1,111 @@
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #bb86fc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header-content {
+    padding: 50px 20px;
+}
+
+.header-content h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h2 {
+    color: #bb86fc;
+}
+
+.about-content {
+    display: flex;
+    margin-left: 30vw;
+    gap: 20px;
+}
+
+.about-content img {
+    border-radius: 10%;
+    max-width: 250px;
+    max-height: 300px;
+}
+
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.project {
+    background-color: #1e1e1e;
+    border: 1px solid #bb86fc;
+    margin: 20px;
+    padding: 20px;
+    max-width: 45%;
+    flex: 1 1 45%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.project img {
+    max-width: 60%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.project img:hover{
+    transform: scale(1.05);
+}
+
+.project h3 {
+    margin-top: 0;
+}
+
+.project a {
+    color: #bb86fc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
