@@ -6,6 +6,10 @@ body {
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 header {
     background-color: #1f1f1f;
     color: white;
@@ -25,9 +29,16 @@ nav ul li {
 }
 
 nav ul li a {
+    display: inline-block;
     color: #bb86fc;
     text-decoration: none;
     font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+nav ul li a:hover{
+    transform: scale(1.2);
+    color: #c4a5eb;
 }
 
 .header-content {
@@ -84,6 +95,7 @@ h2 {
     max-width: 60%;
     height: auto;
     margin-bottom: 15px;
+    transition: transform 0.2s ease;
 }
 
 .project img:hover{
