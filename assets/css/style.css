@@ -153,6 +153,12 @@ footer {
     flex: 1 1 150px;
 }
 
+.skills-text {
+    margin-left: 20vw;
+    margin-right: 20vw;
+    text-align: left;
+}
+
 .skill img {
     height: 80px;
 }
