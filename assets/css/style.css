@@ -72,7 +72,7 @@ h2 {
     margin-top: 2.5vh;
 }
 
-.about-text{
+.about-text {
     margin-right: 30vw;
     text-align: left;
 }
@@ -121,8 +121,15 @@ h2 {
 .contact-icons {
     display: flex;
     justify-content: center;
-    gap: 25px;
     margin-top: 20px;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.contact-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contact-icons a img {
@@ -189,4 +196,126 @@ footer {
 
 .play-link:hover {
     text-decoration: underline;
+}
+
+.project-video {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.project-detail-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 0 20px;
+}
+
+.project-text {
+    flex: 1;
+    max-width: 350px;
+    text-align: left;
+}
+
+.project-screenshots {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-screenshots a img {
+    max-width: 300px;
+    border: 1px solid #bb86fc;
+    border-radius: 5%;
+    transition: transform 0.2s ease;
+}
+
+.project-screenshots a img:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 1300px) {
+    .about-content {
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+    }
+
+    .about-content img {
+        margin: 0;
+    }
+
+    .about-text {
+        margin: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects {
+        flex-direction: column;
+    }
+
+    .project {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .skills-container {
+        margin-left: 10vw;
+        margin-right: 10vw;
+        gap: 20px;
+    }
+
+    .skill {
+        flex: 1 1 45%;
+        max-width: 45%;
+    }
+
+    .skills-text {
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    .contact-icons {
+        gap: 20px;
+    }
+
+    .contact-icons a {
+        flex: 1 1 45%;
+        max-width: 45%;
+    }
+
+    .contact-icons a img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .play-link {
+        display: none;
+    }
+
+    iframe {
+        max-width: 80vw;
+    }
+
+    .project-detail-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-text {
+        max-width: 85vw;
+        text-align: center;
+    }
+
+    .project-screenshots {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-screenshots a img {
+        max-width: 80vw;
+    }
 }
