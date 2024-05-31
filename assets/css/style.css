@@ -69,6 +69,12 @@ h2 {
     border-radius: 10%;
     max-width: 250px;
     max-height: 300px;
+    margin-top: 5vh;
+}
+
+.about-text{
+    margin-right: 30vw;
+    text-align: left;
 }
 
 .projects {
