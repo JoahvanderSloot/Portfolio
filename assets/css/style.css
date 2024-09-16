@@ -176,6 +176,10 @@ footer {
     height: 80px;
 }
 
+.skill img:hover {
+    transform: scale(1.1);
+}
+
 .stars {
     display: flex;
     justify-content: center;
