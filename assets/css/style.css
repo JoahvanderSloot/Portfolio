@@ -41,8 +41,17 @@ nav ul li a:hover {
     color: #c4a5eb;
 }
 
+.headerBarr {
+    background-color: #1f1f1f;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0%;
+}
+
 .header-content {
-    padding: 50px 20px;
+    padding: 30px 20px;
 }
 
 .header-content h1 {
@@ -261,7 +270,7 @@ footer {
     border-radius: 8px;
     width: 100%;
     max-width: 960px;
-    height: 600px;
+    height: 660px;
     margin: 0 auto;
     display: block;
 }
@@ -331,5 +340,9 @@ footer {
 
     .project-screenshots a img {
         max-width: 80vw;
+    }
+
+    #webgl-game{
+        display: none;
     }
 }
