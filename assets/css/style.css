@@ -256,6 +256,16 @@ footer {
     }
 }
 
+#webgl-game iframe {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 960px;
+    height: 600px;
+    margin: 0 auto;
+    display: block;
+}
+
 @media (max-width: 768px) {
     .projects {
         flex-direction: column;
