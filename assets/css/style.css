@@ -248,7 +248,7 @@ footer {
 }
 
 #code-snippets {
-    background-color: #1e1e1e; /* Dark background for contrast */
+    background-color: #1e1e1e;
     padding: 20px;
     border-radius: 8px;
     margin: 20px auto;
@@ -257,7 +257,7 @@ footer {
 }
 
 .code-example {
-    background-color: #252526; /* Slightly lighter than section for depth */
+    background-color: #252526;
     padding: 15px;
     border-radius: 6px;
     margin-bottom: 15px;
@@ -344,8 +344,8 @@ code {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 5%;
-        justify-items: center; /* Centers items horizontally */
-        align-items: center; /* Centers items vertically */
+        justify-items: center;
+        align-items: center;
     }
     
 
