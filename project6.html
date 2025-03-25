@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SteamBugs</title>
+    <title>WA-LCH</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>SteamBugs</h1>
+            <h1>WA-LCH</h1>
         </div>
         <nav>
             <ul>
@@ -25,40 +25,128 @@
 
     <section id="project-detail" class="section">
         <div class="project-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/lgVxaZakmb4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/D95I2jfcv_Q?si=fh-rcTKH2u2YGZFf" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="project-detail-container">
             <div class="project-text">
-                <h2>SteamBugs Discription</h2>
-                <p>SteamBugs is a “shoot them up” game. You are a robot bird that shoots laser bullets out its beak. 
-                    You fly through a steampunk factory where robot insects are being made. 
-                    These insects try to stop you from flying deeper into the factory where their boss is.<br></br>
-                    The boss has three different attacks, you encounter it multiple times through the game 
-                    (which can technically go on forever if you are good enough). 
-                    Every time the boss comes back it has an extra attack until it uses all three of them at the same time.
-                    You can select a difficulty in the start menu, which affects how many enemies spawn, 
-                    how fast they are, and how strong the boss is.<br></br>
-                    The difficulty also affects how many points you gain from killing enemies, 
-                    These points count up your score and a high score is tracked in the main menu.<br></br>
-                    This project was the first team project I ever made, the teamwork was quite fluent, 
-                    we had good communication and everyone did their job very well.<br></br>
-                    This game is made using Unity, C# and Blender. It was released in June 2024 and took 4 weeks to make.                 
+                <h2>WA-LCH Project Description</h2>
+                    <p>This was my second ever team project (the people I worked with are linked on the itch page).<br></br> 
+                        We were going to make a twin-stick shooter game, we were three developers and two artists. 
+                        We made this game in four weeks. With one week of pre-production and three sprints one week each. 
+                        This was a competition where we ended up getting second place.
                     </p>
-                    <p><a href="https://joahvds.itch.io/steambugs" class="play-link" target="_blank">Click here to play</a></p>
+                <h2>What I made</h2>
+                    <p>My role in the project was, enemies, pickups, UI, menus, interactive parts of the map, etc.<br></br>
+                        So in the first sprint I made the enemies, the pickups, cleanups etc.<br>And in sprint two I made the screen loop and all the UI.<br>
+                        In sprint three. I made the interacting with doors, power generators and acid waste (the stuff you clean).<br>
+                        And then at the end of the last sprint I ended up helping with the player, making the stun attack and the cleaning.
+                        And did all the sound effects.
+                    </p>
+                <h2>Project Info</h2>
+                    <p>info</p>
+                <p><a href="https://joahvds.itch.io/wa-lch" class="play-link" target="_blank">Click here for itch.io</a></p>
             </div>
             <div class="project-screenshots">
-                <a href="assets/images/ScreenShots/SteamScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/SteamScreenshot1.png" alt="Shy Screenshot 1"></a>
-                <a href="assets/images/ScreenShots/SteamScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/SteamScreenshot2.png" alt="Shy Screenshot 2"></a>
-                <a href="assets/images/ScreenShots/SteamScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/SteamScreenshot3.png" alt="Shy Screenshot 3"></a>
-                <a href="assets/images/ScreenShots/SteamScreenshot4.png" target="_blank"><img src="assets/images/ScreenShots/SteamScreenshot4.png" alt="Shy Screenshot 4"></a>
-                <a href="assets/images/ScreenShots/SteamScreenshot5.png" target="_blank"><img src="assets/images/ScreenShots/SteamScreenshot5.png" alt="Shy Screenshot 5"></a>
-                <a href="assets/images/ScreenShots/SteamScreenshot6.png" target="_blank"><img src="assets/images/ScreenShots/SteamScreenshot6.png" alt="Shy Screenshot 6"></a>
+                <a href="assets/images/ScreenShots/WALCHscreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/WALCHscreenshot1.png" alt="WA-LCH Screenshot 1"></a>
+                <a href="assets/images/ScreenShots/WALCHscreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/WALCHscreenshot2.png" alt="WA-LCH Screenshot 2"></a>
+                <a href="assets/images/ScreenShots/WALCHscreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/WALCHscreenshot3.png" alt="WA-LCH Screenshot 3"></a>
+                <a href="assets/images/ScreenShots/WALCHscreenshot4.png" target="_blank"><img src="assets/images/ScreenShots/WALCHscreenshot4.png" alt="WA-LCH Screenshot 4"></a>
             </div>
         </div>
+        <section id="webgl-game" class="section">
+            <h2>Play WA-LCH</h2>
+            <iframe frameborder="0" src="https://itch.io/embed-upload/10784145?color=333333" allowfullscreen="" width="640" height="380"><a href="https://joahvds.itch.io/wa-lch">Play WA-LCH on itch.io</a></iframe>
+        </section>
+        <section id="code-snippets" class="section">
+        </code></pre>
+                </div>
+                <div class="code-example">
+                    <h3>Roomba Bomb Script (Enemy 2)</h3>
+                    <pre><code class="language-css">
+public class RoombaScript : MonoBehaviour
+{
+    GameObject player;
+    PlayerMovement playerMovement;
+    NavMeshAgent agent;
+    bool playerIsCleaning = false;
+    [SerializeField] float despawnDistance = 100;
+    [SerializeField] GameObject epxlotion;
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+
+        player = GameObject.FindWithTag("Player");
+        playerMovement = player.GetComponent<PlayerMovement>();
+    }
+
+    private void Update()
+    {
+        <span style="color: rgb(0, 150, 0);">// The enemy only works when you are not in the tutorial scene</span>
+        if (SceneManager.GetActiveScene().name != "Tutorial")
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+            <span style="color: rgb(0, 150, 0);">// when the player is not active cleaning it the robot walks around chosing random location
+            // if the player starts doing something the robots destination becomes the position of the player</span>
+            if (!playerIsCleaning)
+            {
+                if (agent.velocity.magnitude <= 0.1)
+                {
+                    Vector3 ranomdPos = new Vector3(
+                        transform.position.x + Random.Range(-5, 5),
+                        transform.position.y + Random.Range(-5, 5),
+                        transform.position.z + Random.Range(-5, 5));
+
+                    agent.SetDestination(ranomdPos);
+                }
+            }
+            <span style="color: rgb(0, 150, 0);">// When the player starts cleaning the enemy moves towards them</span>
+            if (playerIsCleaning)
+            {
+                agent.SetDestination(player.transform.position);
+            }
+
+            if (playerMovement.IsActive)
+            {
+                playerIsCleaning = true;
+            }
+            else if (!playerMovement.IsActive)
+            {
+                playerIsCleaning = false;
+            }
+
+            <span style="color: rgb(0, 150, 0);">// Despawn the enemy when player is too far away</span>
+            if (distanceToPlayer >= despawnDistance)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        <span style="color: rgb(0, 150, 0);">// When the enemy hits the player it explodes and deals damage to the player.</span>
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            FindObjectOfType<AudioManager>().Play("Explotion");
+            Instantiate(epxlotion, transform.position, Quaternion.identity);
+            playerMovement.lives -= 3;
+            Destroy(gameObject);
+        }
+    }
+}
+        </code></pre>
+                </div>
+            </div>
+        </section>        
     </section>
     <br></br>
     <footer>
-        <p>&copy; 2024 Joah van der Sloot</p>
+        <p style="flex: 1; text-align: center">© <span id="copyright-year"></span> Joah van der Sloot</p>
+        <script>
+          document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
     </footer>
 
 </body>

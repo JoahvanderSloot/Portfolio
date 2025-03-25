@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shy</title>
+    <title>YOHOB</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>Shy</h1>
+            <h1>You Only Have One Box</h1>
         </div>
         <nav>
             <ul>
@@ -25,38 +25,84 @@
 
     <section id="project-detail" class="section">
         <div class="project-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/cQJB4-wevrE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/mR3u5qeEQoc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="project-detail-container">
             <div class="project-text">
-                <h2>Shy Game Discription</h2>
-                <p>In this game you are a socially awkward character, you have to navigate around rooms, 
-                    unlock doors, and try to escape. All without touching anyone, since if you do you will crumble under the embarrassment.<br></br>
-                    You can move your character around by clicking somewhere in the level. 
-                    It uses the Unity NavMesh to calculate its path and walk there.<br></br>It has three small levels, 
-                    it has a levels menu where it keeps track of which levels you cleared already. 
-                    I added a settings menu where you can turn on or off the sound, 
-                    you can change your camera sensitivity and you can change the color of your character 
-                    (the NPC’s get the opposite color of your character automatically).<br></br>
-                    This game is made using Unity and C#, released in May 2024 and took 2 weeks to make.
+                <h2>YOHOB Project Description</h2>
+                    <p>This was a 48 hour game jam me and two friends joined (they are linked on the itch page).<br></br>
+                        The theme of the game jam was "you only have one". So we made a parkour game where you have one box you carry around to navigate the level.<br>
+                        The game is not fully polished but we did also not expect that for 48 hours. It has a tutorial level and 2 real levels you can play.
                     </p>
-                    <p><a href="https://joahvds.itch.io/shy" class="play-link" target="_blank">Click here to play</a></p>
+                <h2>What I made</h2>
+                    <p>My role in this project was the menus and UI, the player camera. And I made the levels.<br></br>
+                        We did not have set roles so we all helped with each other’s parts but these where the main ones I made.
+                        You can also see who made what in the "credits" menu I made and you can see the asset packs we used.
+                    </p>
+                <h2>Project Info</h2>
+                    <p>info</p>
+                <p><a href="https://github.com/NielsCraft12/GluJam_09-2024" class="play-link" target="_blank">Click here for GitHub</a></p>
+                <p><a href="https://gohanblade.itch.io/you-only-have-one-box" class="play-link" target="_blank">Click here for itch.io</a></p>
             </div>
             <div class="project-screenshots">
-                <a href="assets/images/ScreenShots/ShyScreenshot5.png" target="_blank"><img src="assets/images/ScreenShots/ShyScreenshot5.png" alt="Shy Screenshot 1"></a>
-                <a href="assets/images/ScreenShots/ShyScreenshot6.png" target="_blank"><img src="assets/images/ScreenShots/ShyScreenshot6.png" alt="Shy Screenshot 2"></a>
-                <a href="assets/images/ScreenShots/ShyScreenshot7.png" target="_blank"><img src="assets/images/ScreenShots/ShyScreenshot7.png" alt="Shy Screenshot 3"></a>
-                <a href="assets/images/ScreenShots/ShyScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/ShyScreenshot1.png" alt="Shy Screenshot 4"></a>
-                <a href="assets/images/ScreenShots/ShyScreenshot8.png" target="_blank"><img src="assets/images/ScreenShots/ShyScreenshot8.png" alt="Shy Screenshot 5"></a>
-                <a href="assets/images/ScreenShots/ShyScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/ShyScreenshot3.png" alt="Shy Screenshot 6"></a>
-                <a href="assets/images/ScreenShots/ShyScreenshot4.png" target="_blank"><img src="assets/images/ScreenShots/ShyScreenshot4.png" alt="Shy Screenshot 7"></a>
-                <a href="assets/images/ScreenShots/ShyScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/ShyScreenshot2.png" alt="Shy Screenshot 8"></a>
+                <a href="assets/images/ScreenShots/BoxScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot1.png" alt="YOHOB Screenshot 1"></a>
+                <a href="assets/images/ScreenShots/BoxScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot2.png" alt="YOHOB Screenshot 2"></a>
+                <a href="assets/images/ScreenShots/BoxScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot3.png" alt="YOHOB Screenshot 3"></a>
+                <a href="assets/images/ScreenShots/BoxScreenshot4.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot4.png" alt="YOHOB Screenshot 4"></a>
             </div>
         </div>
+        <section id="webgl-game" class="section">
+            <h2>Play You Only Have One Box</h2>
+            <iframe frameborder="0" src="https://itch.io/embed-upload/11579544?color=42268a" allowfullscreen="" width="640" height="380"><a href="https://gohanblade.itch.io/you-only-have-one-box">Play You Only Have One Box on itch.io</a></iframe>
+        </section>
+        <section id="code-snippets" class="section">
+        </code></pre>
+                </div>
+                <div class="code-example">
+                    <h3>Player Camera Script</h3>
+                    <pre><code class="language-css">
+public class PlayerCam : MonoBehaviour
+{
+    [SerializeField] Transform playerTransform;
+    float yPos;
+
+    private void Update()
+    {
+        <span style="color: rgb(0, 150, 0);">// Very simple camera following the player</span>
+        if(yPos >= -3.5f)
+        {
+            yPos = playerTransform.position.y + 1.5f;
+        }
+        else
+        {
+            yPos = -3.6f;
+        }
+
+        if(playerTransform.position.y >= -3.6)
+        {
+            yPos = playerTransform.position.y + 1.5f;
+        }
+        
+        transform.position = new Vector3(playerTransform.position.x, yPos, playerTransform.position.z - 10);
+
+        <span style="color: rgb(0, 150, 0);">// Kill the player when they fall into the void</span>
+        if(playerTransform.position.y <= -8)
+        {
+            PlayerInfo.Instance.DamagePoints++;
+        }
+    }
+}
+        </code></pre>
+                </div>
+            </div>
+        </section>        
     </section>
     <br></br>
     <footer>
-        <p>&copy; 2024 Joah van der Sloot</p>
+        <p style="flex: 1; text-align: center">© <span id="copyright-year"></span> Joah van der Sloot</p>
+        <script>
+          document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
     </footer>
 
 </body>

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOHOB</title>
+    <title>Color Dodge</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>You Only Have One Box</h1>
+            <h1>Color Dodge</h1>
         </div>
         <nav>
             <ul>
@@ -25,31 +25,100 @@
 
     <section id="project-detail" class="section">
         <div class="project-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/mR3u5qeEQoc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/woED4udK3Rk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="project-detail-container">
             <div class="project-text">
-                <h2>Space Fighter Game Discription</h2>
-                    <p>Game desc</p>
-                <p><a href="https://gohanblade.itch.io/you-only-have-one-box" class="play-link" target="_blank">Click here to play</a></p>
+                <h2>Color Dodge Project Description</h2>
+                    <p>This is a very simple game, it’s basically copied from my friends smartwatch game so that explains the simplicity.<br></br>
+                        You dodge and catch circles with certain colors, when you get 10 points or catch a flashing circle you change color. 
+                        And the circles fall faster the higher your score gets.<br></br>
+                        I made this as a challenge and it took me 6 hours to, set up the project, code, upload and make the itch page.
+                    </p>
                 <h2>What I made</h2>
-                    <p>Everything I made</p>
-                <p><a href="https://github.com/NielsCraft12/GluJam_09-2024" class="play-link" target="_blank">Click here for GitHub</a></p>
+                    <p>Obviously I made the whole game, it was not technically challenging but it was fun to see how fast I could make something like this.
+                    </p>
+                <h2>Project Info</h2>
+                    <p>info</p>
+                <p><a href="https://joahvds.itch.io/color-dodge" class="play-link" target="_blank">Click here for itch.io</a></p>
             </div>
             <div class="project-screenshots">
-                <a href="assets/images/ScreenShots/BoxScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot1.png" alt="YOHOB Screenshot 1"></a>
-                <a href="assets/images/ScreenShots/BoxScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot3.png" alt="YOHOB Screenshot 3"></a>
-                <a href="assets/images/ScreenShots/BoxScreenshot4.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot4.png" alt="YOHOB Screenshot 4"></a>
-                <a href="assets/images/ScreenShots/BoxScreenshot5.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot5.png" alt="YOHOB Screenshot 5"></a>
-                <a href="assets/images/ScreenShots/BoxScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot2.png" alt="YOHOB Screenshot 2"></a>
-                <a href="assets/images/ScreenShots/BoxScreenshot6.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot6.png" alt="YOHOB Screenshot 6"></a>
-                <a href="assets/images/ScreenShots/BoxScreenshot7.png" target="_blank"><img src="assets/images/ScreenShots/BoxScreenshot7.png" alt="YOHOB Screenshot 7"></a>
+                <a href="assets/images/ScreenShots/ColorScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/ColorScreenshot1.png" alt="Color Dodge Screenshot 1"></a>
+                <a href="assets/images/ScreenShots/ColorScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/ColorScreenshot2.png" alt="Color Dodge Screenshot 2"></a>
+                <a href="assets/images/ScreenShots/ColorScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/ColorScreenshot3.png" alt="Color Dodge Screenshot 3"></a>
             </div>
         </div>
         <section id="webgl-game" class="section">
-            <h2>You Only Have One Box</h2>
-            <iframe frameborder="0" src="https://itch.io/embed-upload/11579544?color=ededed" allowfullscreen="" width="640" height="380"><a href="https://gohanblade.itch.io/you-only-have-one-box">Play You Only Have One Box on itch.io</a></iframe>
+            <h2>Play Color Dodge</h2>
+            <iframe frameborder="0" src="https://itch.io/embed-upload/12437933?color=000000" allowfullscreen="" width="640" height="380"><a href="https://joahvds.itch.io/color-dodge">Play Color Dodge on itch.io</a></iframe>
         </section>
+        <section id="code-snippets" class="section">
+        </code></pre>
+                </div>
+                <div class="code-example">
+                    <h3>Color Dodge GameManager</h3>
+                    <pre><code class="language-css">
+public class GameManager : MonoBehaviour
+{
+    [SerializeField] GameObject m_ballPref;
+    float m_spawnSpeed;
+    [SerializeField] TextMeshProUGUI m_score;
+    [SerializeField] TextMeshProUGUI m_highScore;
+    [SerializeField] Score m_scores;
+    [SerializeField] GameObject m_startButton;
+
+    private void Start()
+    {
+        m_scores.m_Score = 0;
+        m_spawnSpeed = 2;
+        m_scores.m_BallSpeed = 3;
+        StartCoroutine(SpawnBalls());
+    }
+
+    private void Update()
+    {
+        m_score.text = m_scores.m_Score.ToString();
+        m_highScore.text = "High Score: " + m_scores.m_HighScore.ToString();
+
+        <span style="color: rgb(0, 150, 0);">Check if you broke your highscore and set new highscore if you did</span>
+        if(m_scores.m_Score > m_scores.m_HighScore)
+        {
+            m_scores.m_HighScore = m_scores.m_Score;
+        }
+
+        <span style="color: rgb(0, 150, 0);">Turn on the start button and freeze time if you die</span>
+        if (m_scores.m_GameOver)
+        {
+            Time.timeScale = 0;
+            m_startButton.SetActive(true);
+        }
+        else
+        {
+            m_startButton.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    <span style="color: rgb(0, 150, 0);">Spawn the circles with a random amount, random positions (the random color is set in the ball script itself)</span>
+    private IEnumerator SpawnBalls()
+    {
+        while (true)
+        {
+            int _amount = Random.Range(1, 4 + ((int)m_scores.m_BallSpeed));
+            for (int i = 0; i <= _amount; i++)
+            {
+                int _randomX = Random.Range(-4, 5);
+                float _randomY = Random.Range(5.5f, 7);
+                Vector3 _ballPos = new Vector3(_randomX, _randomY, 0);
+                Instantiate(m_ballPref, _ballPos, Quaternion.identity);
+            }
+            yield return new WaitForSeconds(m_spawnSpeed);
+        }
+    }
+        </code></pre>
+                </div>
+            </div>
+        </section>        
     </section>
     <br></br>
     <footer>

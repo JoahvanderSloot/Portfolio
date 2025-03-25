@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Fighter</title>
+    <title>WA-LCH origins</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>Space Fighter</h1>
+            <h1>WA-LCH origins</h1>
         </div>
         <nav>
             <ul>
@@ -25,43 +25,150 @@
 
     <section id="project-detail" class="section">
         <div class="project-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/mK8M9fiuPy8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/z1rAx_g-JZI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="project-detail-container">
             <div class="project-text">
-                <h2>Space Fighter Game Discription</h2>
-                    <p>Game desc</p>
+                <h2>WA-LCH origins Project Description</h2>
+                    <p>This game was made for the global game jam of 2025 with the theme "bubbles"<br></br>
+                        me and my ground consisting of two developers and three artists (all linked on the itch page) immediately thought of WA-LCH the cleaning robot.<br>
+                        Thats how we got the idea for a WA-LCH Origins where you play as the cleaning robot but not right rouge droids like the original, 
+                        but actually clean the lab.
+                    </p>
                 <h2>What I made</h2>
-                    <p>Everything I made</p>
-                <p><a href="https://github.com/JoahvanderSloot/SHMUP-2.0" class="play-link" target="_blank">Click here for GitHub</a></p>
-                <p><a href="https://joahvds.itch.io/space-fighter" class="play-link" target="_blank">Click here for itch.io</a></p>
+                    <p>I made the menu's, UI, scientists, rats, trash, the clock and most of the game manager.<br></br>
+                        This project was a lot of fun to make and because we only had two days we helped each other crisscross throughout the project, 
+                        so most things I did not list I did help with and I myself also got help with the features I made.
+                    </p>
+                <h2>Project Info</h2>
+                    <p>info</p>
+                <p><a href="https://github.com/NielsCraft12/ggj-walch2" class="play-link" target="_blank">Click here for GitHub</a></p>
+                <p><a href="https://joahvds.itch.io/walch-origins" class="play-link" target="_blank">Click here for itch.io</a></p>
             </div>
             <div class="project-screenshots">
-                <a href="assets/images/ScreenShots/SpaceFighterScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/SpaceFighterScreenshot1.png" alt="Space Fighter Screenshot 1"></a>
-                <a href="assets/images/ScreenShots/SpaceFighterScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/SpaceFighterScreenshot2.png" alt="Space Fighter Screenshot 2"></a>
-                <a href="assets/images/ScreenShots/SpaceFighterScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/SpaceFighterScreenshot3.png" alt="Space Fighter Screenshot 3"></a>
-                <a href="assets/images/ScreenShots/SpaceFighterScreenshot4.png" target="_blank"><img src="assets/images/ScreenShots/SpaceFighterScreenshot4.png" alt="Space Fighter Screenshot 4"></a>
-                <a href="assets/images/ScreenShots/SpaceFighterScreenshot5.png" target="_blank"><img src="assets/images/ScreenShots/SpaceFighterScreenshot5.png" alt="Space Fighter Screenshot 5"></a>
-                <a href="assets/images/ScreenShots/SpaceFighterScreenshot6.png" target="_blank"><img src="assets/images/ScreenShots/SpaceFighterScreenshot6.png" alt="Space Fighter Screenshot 6"></a>
+                <a href="assets/images/ScreenShots/WALCHogScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/WALCHogScreenshot1.png" alt="WA-LCH origins Screenshot 1"></a>
+                <a href="assets/images/ScreenShots/WALCHogScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/WALCHogScreenshot2.png" alt="WA-LCH origins Screenshot 2"></a>
+                <a href="assets/images/ScreenShots/WALCHogScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/WALCHogScreenshot3.png" alt="WA-LCH origins Screenshot 3"></a>
+                <a href="assets/images/ScreenShots/WALCHogScreenshot4.png" target="_blank"><img src="assets/images/ScreenShots/WALCHogScreenshot4.png" alt="WA-LCH origins Screenshot 4"></a>
             </div>
         </div>
         <section id="webgl-game" class="section">
-            <h2>Play Space Fighter</h2>
-            <iframe frameborder="0" src="https://itch.io/embed-upload/11817264?color=000000" allowfullscreen="" width="640" height="380"><a href="https://joahvds.itch.io/space-fighter">Play Space Fighter on itch.io</a></iframe>
+            <h2>Play WA-LCH origins </h2>
+            <iframe frameborder="0" src="https://itch.io/embed-upload/12701195?color=02f2ff" allowfullscreen="" width="640" height="380"><a href="https://joahvds.itch.io/walch-origins">Play WA-LCH origins on itch.io</a></iframe>
         </section>
         <section id="code-snippets" class="section">
         </code></pre>
                 </div>
                 <div class="code-example">
-                    <h3>My Script Name Here</h3>
+                    <h3>Scientists Script</h3>
                     <pre><code class="language-css">
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
+public class Scientists : MonoBehaviour
+{
+    [SerializeField] float m_speed;
+    [SerializeField] float m_minRadius;
+    [SerializeField] float m_maxRadius;
+    [SerializeField] float m_waitTime;
+    [Range(2, 10)] [SerializeField] int m_dropRate;
+    [SerializeField] Animator m_messOmeterText;
+    [SerializeField] GameObject m_drop;
+    Animator m_animator;
+
+    int m_randomDrop;
+    Vector3 m_startPos;
+    NavMeshAgent m_agent;
+    Vector3 m_targetPos;
+    Coroutine m_setTarget;
+
+    private void Start()
+    {
+        m_startPos = transform.position;
+        m_animator = GetComponentInChildren<Animator>();
+        m_agent = GetComponent<NavMeshAgent>();
+        m_agent.speed = m_speed;
+    }
+
+    private void Update()
+    {
+        <span style="color: rgb(0, 150, 0);">// If the scientist is at its target chose a new location to go to</span>
+        if (!m_agent.pathPending && m_agent.remainingDistance <= m_agent.stoppingDistance)
+        {
+            if (m_setTarget == null)
+            {
+                m_setTarget = StartCoroutine(SetNewTarget());
+            }
         }
+
+        <span style="color: rgb(0, 150, 0);">// If the RNG is 1 drop a trash pile</span>
+        if(m_randomDrop == 1)
+        {
+            AudioManager.m_Instance.Play("Trash");
+            Instantiate(m_drop, transform.position, Quaternion.identity);
+            m_messOmeterText.SetTrigger("Shake");
+            m_randomDrop = 0;
+        }
+
+        <span style="color: rgb(0, 150, 0);">// If the Scientist is walking turn on the walking animation and turn on the footsteps sounds</span>
+        if (m_agent.velocity.magnitude < 0.1f)
+        {
+            AudioManager.m_Instance.Play("FootSteps");
+            m_animator.SetBool("Walking", false);
+        }else
+            m_animator.SetBool("Walking", true);
+    }
+
+    private IEnumerator SetNewTarget()
+    {
+        <span style="color: rgb(0, 150, 0);">// Generate a number to maybe drop a trash pile if</span>
+        m_randomDrop = Random.Range(0, m_dropRate);
+        yield return new WaitForSeconds(m_waitTime);
+        <span style="color: rgb(0, 150, 0);">// Chose a random position to walk towards</span>
+        m_targetPos = ChooseRandomPos();
+        m_agent.SetDestination(m_targetPos);
+        StopCoroutine(m_setTarget);
+        m_setTarget = null;
+    }
+
+    <span style="color: rgb(0, 150, 0);">// Get a random position on the map</span>
+    private Vector3 ChooseRandomPos()
+    {
+        Vector2 _randomDirection = Random.insideUnitCircle.normalized;
+        float _randomDistance = Random.Range(m_minRadius, m_maxRadius);
+        Vector3 _randomPoint = m_startPos + new Vector3(_randomDirection.x, 0, _randomDirection.y) * _randomDistance;
+
+        NavMeshHit _hit;
+        if (NavMesh.SamplePosition(_randomPoint, out _hit, m_maxRadius, NavMesh.AllAreas))
+        {
+            return _hit.position;
+        }
+
+        return m_startPos;
+    }
+
+    <span style="color: rgb(0, 150, 0);">// Set a new target when 2 scientist bumb into each other so they dont get stuck in each others paths</span>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Scientist"))
+        {
+            m_setTarget = null;
+            if (m_setTarget == null)
+            {
+                m_setTarget = StartCoroutine(SetNewTarget());
+            }
+        }
+    }
+
+    <span style="color: rgb(0, 150, 0);">// Open the door when the scientist walks into it</span>
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Door"))
+        {
+            if (other.gameObject.GetComponent<DoorOpen>().Moving == false)
+            {
+                other.gameObject.GetComponent<DoorOpen>().Moving = true;
+            }
+        }
+    }
+}
         </code></pre>
                 </div>
             </div>
