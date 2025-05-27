@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Dodge</title>
+    <title>Grapple Battle</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <h1>Color Dodge</h1>
+            <h1>Grapple Battle</h1>
         </div>
         <nav>
             <ul>
@@ -25,98 +25,120 @@
 
     <section id="project-detail" class="section">
         <div class="project-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/woED4udK3Rk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/w_6AXxW0HN4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <div class="project-detail-container">
             <div class="project-text">
-                <h2>Color Dodge Project Description</h2>
-                    <p>This is a very simple game, it’s basically copied from my friends smartwatch game so that explains the simplicity.<br></br>
-                        You dodge and catch circles with certain colors, when you get 10 points or catch a flashing circle you change color. 
-                        And the circles fall faster the higher your score gets.<br></br>
-                        I made this as a challenge and it took me 6 hours to, set up the project, code, upload and make the itch page.
+                <h2>Grapple Battle Project Description</h2>
+                    <p>Grapple Battle is a 3D first-person online multiplayer 1v1 PvP game. You fight on floating islands above a void with swords, grappling hooks, and shurikens.<br></br>
+                        I always wanted to make a multiplayer PvP game. This is a personal project I made mostly for myself since this is the type of game I would enjoy.<br>
+                        I had quite some time, but a lot got lost in game design, tech design, and playtests.
+                        This project was a lot of fun to make, and I am happy with the final product.
                     </p>
                 <h2>What I made</h2>
-                    <p>Obviously I made the whole game, it was not technically challenging but it was fun to see how fast I could make something like this.
+                    <p>Since this is a solo project, I made everything except for some art, which I got from the Unity asset store. And the sounds that I got from royalty-free audio websites.<br></br>
+                        This is the first time I made online multiplayer. I used Photon PUN 2 for this, and it was very challenging yet fun, and the multiplayer is what I am most happy with.<br>
                     </p>
                 <h2>Project Info</h2>
-                    <p>Made with - Unity, C#<br>
-                        Released - 7 January 2025<br>
-                        6 hour solo project</p>
-                <p><a href="https://joahvds.itch.io/color-dodge" class="play-link" target="_blank">Click here for itch.io</a></p>
+                    <p>Made with - Unity, C#, Photon PUN 2<br>
+                        Released - 11 April 2025<br>
+                        9 week solo project</p>
+                <p><a href="https://github.com/JoahvanderSloot/Grapple-Battle" class="play-link" target="_blank">Click here for GitHub</a></p>
+                <p><a href="https://joahvds.itch.io/grapple-battle" class="play-link" target="_blank">Click here for itch.io</a></p>
             </div>
             <div class="project-screenshots">
-                <a href="assets/images/ScreenShots/ColorScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/ColorScreenshot1.png" alt="Color Dodge Screenshot 1"></a>
-                <a href="assets/images/ScreenShots/ColorScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/ColorScreenshot2.png" alt="Color Dodge Screenshot 2"></a>
-                <a href="assets/images/ScreenShots/ColorScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/ColorScreenshot3.png" alt="Color Dodge Screenshot 3"></a>
+                <a href="assets/images/ScreenShots/GrappleBattleScreenshot1.png" target="_blank"><img src="assets/images/ScreenShots/GrappleBattleScreenshot1.png" alt="Grapple Battle Screenshot 1"></a>
+                <a href="assets/images/ScreenShots/GrappleBattleScreenshot2.png" target="_blank"><img src="assets/images/ScreenShots/GrappleBattleScreenshot2.png" alt="Grapple Battle Screenshot 2"></a>
+                <a href="assets/images/ScreenShots/GrappleBattleScreenshot3.png" target="_blank"><img src="assets/images/ScreenShots/GrappleBattleScreenshot3.png" alt="Grapple Battle Screenshot 3"></a>
+                <a href="assets/images/ScreenShots/GrappleBattleScreenshot4.png" target="_blank"><img src="assets/images/ScreenShots/GrappleBattleScreenshot4.png" alt="Grapple Battle Screenshot 4"></a>
             </div>
         </div>
         <section id="webgl-game" class="section">
-            <h2>Play Color Dodge</h2>
-            <iframe frameborder="0" src="https://itch.io/embed-upload/12437933?color=000000" allowfullscreen="" width="640" height="380"><a href="https://joahvds.itch.io/color-dodge">Play Color Dodge on itch.io</a></iframe>
+            <h2>Play Grapple Battle</h2>
+            <iframe frameborder="0" src="https://itch.io/embed-upload/13684119?color=4F3C69" allowfullscreen="" width="640" height="380"><a href="https://joahvds.itch.io/grapple-battle">Play Grapple Battle on itch.io</a></iframe>
         </section>
         <section id="code-snippets" class="section">
         </code></pre>
                 </div>
                 <div class="code-example">
-                    <h3>Color Dodge GameManager</h3>
+                    <h3>Network Manager Script</h3>
                     <pre><code class="language-css">
-public class GameManager : MonoBehaviour
+public class NetworkManager : MonoBehaviourPunCallbacks
 {
-    [SerializeField] GameObject m_ballPref;
-    float m_spawnSpeed;
-    [SerializeField] TextMeshProUGUI m_score;
-    [SerializeField] TextMeshProUGUI m_highScore;
-    [SerializeField] Score m_scores;
-    [SerializeField] GameObject m_startButton;
+    public CanvasGroup m_MenuUI;
+    public GameObject m_ConnectingObj;
 
-    private void Start()
+    void Start()
     {
-        m_scores.m_Score = 0;
-        m_spawnSpeed = 2;
-        m_scores.m_BallSpeed = 3;
-        StartCoroutine(SpawnBalls());
-    }
+        m_MenuUI.interactable = false;
+        m_ConnectingObj.SetActive(true);
 
-    private void Update()
-    {
-        m_score.text = m_scores.m_Score.ToString();
-        m_highScore.text = "High Score: " + m_scores.m_HighScore.ToString();
-
-        <span style="color: rgb(0, 150, 0);">Check if you broke your highscore and set new highscore if you did</span>
-        if(m_scores.m_Score > m_scores.m_HighScore)
+         <span style="color: rgb(0, 150, 0);">// Connecting to the server</span>
+        if (!PhotonNetwork.IsConnectedAndReady)
         {
-            m_scores.m_HighScore = m_scores.m_Score;
-        }
-
-        <span style="color: rgb(0, 150, 0);">Turn on the start button and freeze time if you die</span>
-        if (m_scores.m_GameOver)
-        {
-            Time.timeScale = 0;
-            m_startButton.SetActive(true);
+            PhotonNetwork.ConnectUsingSettings();
+             <span style="color: rgb(0, 150, 0);">// Only connect games with the same version</span>
+            PhotonNetwork.GameVersion = "1.0";
         }
         else
         {
-            m_startButton.SetActive(false);
-            Time.timeScale = 1;
+            m_MenuUI.interactable = true;
+            m_ConnectingObj.SetActive(false);
         }
     }
 
-    <span style="color: rgb(0, 150, 0);">Spawn the circles with a random amount, random positions (the random color is set in the ball script itself)</span>
-    private IEnumerator SpawnBalls()
+    public override void OnConnectedToMaster()
     {
-        while (true)
-        {
-            int _amount = Random.Range(1, 4 + ((int)m_scores.m_BallSpeed));
-            for (int i = 0; i <= _amount; i++)
-            {
-                int _randomX = Random.Range(-4, 5);
-                float _randomY = Random.Range(5.5f, 7);
-                Vector3 _ballPos = new Vector3(_randomX, _randomY, 0);
-                Instantiate(m_ballPref, _ballPos, Quaternion.identity);
-            }
-            yield return new WaitForSeconds(m_spawnSpeed);
-        }
+        base.OnConnectedToMaster();
+        m_MenuUI.interactable = true;
+        m_ConnectingObj.SetActive(false);
     }
+
+    <span style="color: rgb(0, 150, 0);">// Hosting a room</span>
+    public void CreateRoom()
+    {
+        PhotonNetwork.CreateRoom("GameRoom", new Photon.Realtime.RoomOptions() { MaxPlayers = 2 }); // we maken een nieuwe room, max 2 spelers
+    }
+
+    public override void OnCreatedRoom()
+    {
+        base.OnCreatedRoom();
+
+        <span style="color: rgb(0, 150, 0);">// If the room is made we go to the game view</span>
+        <span style="color: rgb(0, 150, 0);">// Since we are the host we can just use the normak "LoadScene"</span>
+        SceneManager.LoadScene("Game");
+    }
+
+    <span style="color: rgb(0, 150, 0);">// Joining a room</span>
+    public void JoinRoom()
+    {
+        AudioManager.m_Instance.Play("Click");
+         <span style="color: rgb(0, 150, 0);">// Find an existing room, if no rooms exist make one</span>
+        m_MenuUI.interactable = true;
+        m_ConnectingObj.SetActive(false);
+
+        PhotonNetwork.JoinOrCreateRoom("GameRoom", new Photon.Realtime.RoomOptions() { MaxPlayers = 2 }, null);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        base.OnJoinedRoom();
+
+        <span style="color: rgb(0, 150, 0);">// When room is found go into the room</span>
+        <span style="color: rgb(0, 150, 0);">// Here we use Photons "LoadLevel" since we did not make the room</span>
+        PhotonNetwork.LoadLevel("Game");
+    }
+
+      <span style="color: rgb(0, 150, 0);">// Issue handeling</span>
+    public override void OnErrorInfo(ErrorInfo errorInfo)
+    {
+        base.OnErrorInfo(errorInfo);
+
+         <span style="color: rgb(0, 150, 0);">// When there is a problem we make sure the player cant do anything</span>
+        m_MenuUI.interactable = true;
+        m_ConnectingObj.SetActive(false);
+    }
+}
         </code></pre>
                 </div>
             </div>

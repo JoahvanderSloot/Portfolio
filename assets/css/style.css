@@ -315,6 +315,10 @@ code {
 }
 
 @media (max-width: 768px) {
+    .hideInMobile{
+        display: none;
+    }
+
     .projects {
         flex-direction: column;
     }
