@@ -229,6 +229,11 @@ footer {
     text-align: left;
 }
 
+.skills-page {
+    align-items: center;
+    
+}
+
 .project-screenshots {
     display: flex;
     flex-direction: column;
@@ -337,11 +342,6 @@ code {
     .skill {
         flex: 1 1 45%;
         max-width: 45%;
-    }
-
-    .skills-text {
-        margin-left: 10vw;
-        margin-right: 10vw;
     }
 
     .contact-icons {
