@@ -346,10 +346,9 @@ code {
 
     .contact-icons {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 5%;
+        grid-template-columns: repeat(3, 1fr); /* Display three icons per row on mobile */
+        gap: 15px;
         justify-items: center;
-        align-items: center;
     }
     
 
