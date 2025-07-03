@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slipstream</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Slipstream</h1>
+        </div>
+        <nav>
+            <ul>
+                <div class="headerBarr">
+                    <li><a href="index.html#">Home</a></li>
+                    <li><a href="index.html">Skills</a></li>
+                    <li><a href="index.html#about">About Me</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="project-detail" class="section">
+        <div class="project-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/LJg_0XI5j0w" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+        <div class="project-detail-container">
+            <div class="project-text">
+                <h2>Slipstream Project Description</h2>
+                <p>I made this game during a student exchange my school (from the Netherlands) did with a school in
+                    Finland.<br>
+                    This game is a 3D first-person parkour game. It takes place in a cyberpunk world.
+                    You run away from a drone that tries to catch you. It's your goal to collect as many checkpoints as
+                    possible before the time is up or you get caught.
+                </p>
+                <h2>What I made</h2>
+                <p>which in a parkour game is one of the most important aspects, so to make sure he could fully focus on
+                    this, I did everything else.<br></br>
+                    I made the drone, game manager, screenflow, menus, and UI, and I made the settings, which also have
+                    a save and load.<br>
+                    Together with the artists, I made the levels; I did the tutorial level myself.<br></br>
+                    The thing I am most happy with is the crosshair picker. You can choose a crosshair, color, size, and
+                    transparency.<br>
+                    This was a lot of fun to make, and it even saves your crosshair settings with a save and load.
+                </p>
+                <h2>International Teamwork</h2>
+                <p>Working together with a team consisting of people from different countries was very challenging.<br>
+                    But I am very happy with the experience and everything I learned from this exchange. And my teamwork
+                    skills have developed a lot.
+                    What I mostly learned was how important planning meetings are. And how you can properly set up a
+                    schedule for them, etc.<br>
+                    Also, doing a project fully in English and for parts of it online helped further my communication
+                    skills.
+                </p>
+                <h2>Project Info</h2>
+                <p>Made with - Unity, C#, Blender<br>
+                    Released - 1 July 2025<br>
+                    5 week project, 5 person team</p>
+                <p><a href="https://github.com/JoahvanderSloot/Parkour-game" class="play-link" target="_blank">Click
+                        here for GitHub</a>
+                </p>
+                <p><a href="https://joahvds.itch.io/slipstream" class="play-link" target="_blank">Click here for
+                        itch.io</a>
+                </p>
+            </div>
+            <div class="project-screenshots">
+                <a href="assets/images/ScreenShots/SlipstreamScreenshot1.png" target="_blank"><img
+                        src="assets/images/ScreenShots/SlipstreamScreenshot1.png" alt="Slipstream Screenshot 1"></a>
+                <a href="assets/images/ScreenShots/SlipstreamScreenshot2.png" target="_blank"><img
+                        src="assets/images/ScreenShots/SlipstreamScreenshot2.png" alt="Slipstream Screenshot 2"></a>
+                <a href="assets/images/ScreenShots/SlipstreamScreenshot3.png" target="_blank"><img
+                        src="assets/images/ScreenShots/SlipstreamScreenshot3.png" alt="Slipstream Screenshot 3"></a>
+                <a href="assets/images/ScreenShots/SlipstreamScreenshot4.png" target="_blank"><img
+                        src="assets/images/ScreenShots/SlipstreamScreenshot4.png" alt="Slipstream Screenshot 4"></a>
+                <a href="assets/images/ScreenShots/SlipstreamScreenshot5.png" target="_blank"><img
+                        src="assets/images/ScreenShots/SlipstreamScreenshot5.png" alt="Slipstream Screenshot 5"></a>
+                <a href="assets/images/ScreenShots/SlipstreamScreenshot6.png" target="_blank"><img
+                        src="assets/images/ScreenShots/SlipstreamScreenshot6.png" alt="Slipstream Screenshot 6"></a>
+            </div>
+        </div>
+        <section id="code-snippets" class="section">
+            </code></pre>
+            </div>
+            <div class="code-example">
+                <h3>Color Picker Script (for the crosshair)</h3>
+                <pre><code class="language-css">
+public class ColorPickButton : MonoBehaviour
+{
+    [SerializeField] private Settings settings;
+
+    [SerializeField] private Texture2D colorChart;
+    [SerializeField] private Image crosshairIMG;
+    [SerializeField] private GameObject chart;
+
+    [SerializeField] private RectTransform cursor;
+    [SerializeField] private Image cursorColor;
+
+    [SerializeField] Slider alphaSlider;
+
+    [SerializeField] Slider sizeSlider;
+
+    private void Start()
+    {
+        alphaSlider.value = settings.CrosshairColor.a;
+        sizeSlider.value = settings.CrosshairSize;
+    }
+
+    private void Update()
+    {
+        <span style="color: rgb(0, 150, 0);">// Set the size and transparency (alpha) of the preview image</span>
+        settings.CrosshairColor.a = alphaSlider.value;
+        settings.CrosshairSize = sizeSlider.value;
+        if (crosshairIMG.color != settings.CrosshairColor)
+            crosshairIMG.color = settings.CrosshairColor;
+
+        crosshairIMG.gameObject.transform.localScale = new Vector3(settings.CrosshairSize, settings.CrosshairSize, settings.CrosshairSize);
+    }
+
+    <span style="color: rgb(0, 150, 0);">// This function gets called when you click somewhere on the color chart</span>
+    public void PickColor()
+    {
+        RectTransform _chartRect = chart.GetComponent<RectTransform>();
+
+        Vector2 _localPoint;
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(_chartRect, Input.mousePosition, null, out _localPoint))
+            return;
+
+        <span style="color: rgb(0, 150, 0);">// Get the position of the mouse cursor on the rect transform (color chart image)</span>
+        cursor.transform.position = Input.mousePosition;
+
+        float _pivotX = _chartRect.pivot.x;
+        float _pivotY = _chartRect.pivot.y;
+
+        float _normalizedX = (_localPoint.x / _chartRect.rect.width) + _pivotX;
+        float _normalizedY = (_localPoint.y / _chartRect.rect.height) + _pivotY;
+
+        int _texX = Mathf.Clamp(Mathf.RoundToInt(_normalizedX * colorChart.width), 0, colorChart.width - 1);
+        int _texY = Mathf.Clamp(Mathf.RoundToInt(_normalizedY * colorChart.height), 0, colorChart.height - 1);
+
+        <span style="color: rgb(0, 150, 0);">// Get the color of the clicked pixel from the rect transform</span>
+        Color _pickedColor = colorChart.GetPixel(_texX, _texY);
+
+        <span style="color: rgb(0, 150, 0);">// Set the preview image to the selected color and save this color in the settings</span>
+        cursorColor.color = _pickedColor;
+        settings.CrosshairColor = _pickedColor;
+        crosshairIMG.color = _pickedColor;
+    }
+}
+        </code></pre>
+            </div>
+            </div>
+        </section>
+    </section>
+    <br></br>
+    <footer>
+        <p style="flex: 1; text-align: center">© <span id="copyright-year"></span> Joah van der Sloot</p>
+        <script>
+            document.getElementById("copyright-year").textContent = new Date().getFullYear();
+        </script>
+    </footer>
+
+</body>
+
+</html>
