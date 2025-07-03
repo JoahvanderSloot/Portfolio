@@ -176,9 +176,18 @@ footer {
 }
 
 .skills-text {
+    display: flex;
     margin-left: 20vw;
     margin-right: 20vw;
     text-align: left;
+    flex-direction: column;
+}
+
+.skills-text img{
+    display: block;
+    margin: 0 auto 1rem;
+    width: 8vw;
+    height: auto;
 }
 
 .skill img {
@@ -389,4 +398,11 @@ code {
     #webgl-game{
         display: none;
     }
+
+    .skills-text img{
+    display: block;
+    margin: 0 auto 1rem;
+    width: 13vh;
+    height: auto;
+}
 }
