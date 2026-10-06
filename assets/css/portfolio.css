@@ -315,6 +315,7 @@ h1, h2, h3, p { margin-top: 0; }
 .detail-cover { position: relative; aspect-ratio: 1.5; overflow: hidden; border: 1px solid var(--line); background: var(--panel); }
 .detail-cover::after { position: absolute; inset: 0; background: linear-gradient(130deg, rgba(178, 97, 210, .17), transparent 55%, rgba(241, 113, 171, .08)); content: ''; pointer-events: none; }
 .detail-cover img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.pixel-art, .pixel-art img { image-rendering: pixelated; }
 .detail-cover-placeholder { display: grid; width: 100%; height: 100%; place-items: center; padding: 30px; background: radial-gradient(ellipse at 75% 20%, rgba(255,120,186,.2), transparent 36%), linear-gradient(145deg, #33263e, #18141d 66%, #2b1a29); color: var(--lilac); font: 13px var(--mono); text-align: center; text-transform: uppercase; }
 .detail-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); border-block: 1px solid var(--line); }
 .detail-meta > div { display: grid; gap: 5px; padding: 17px 15px; border-right: 1px solid var(--line); }
@@ -365,6 +366,8 @@ h1, h2, h3, p { margin-top: 0; }
 .code-panel pre { max-height: 390px; overflow: auto; margin: 0; padding: 17px 15px; color: #e2d8ed; background: transparent; text-align: left; tab-size: 4; }
 .code-panel code { color: inherit; font: 11px/1.75 var(--mono); white-space: pre; }
 .code-panel > p { margin: 0; padding: 8px 13px; border-top: 1px solid var(--line); color: var(--dim); font: 9px var(--mono); text-transform: uppercase; }
+.code-panel .source-link { display: block; padding: 9px 13px; border-top: 1px solid var(--line); color: var(--lilac); font: 10px var(--mono); text-decoration: none; }
+.code-panel .source-link:hover { color: var(--pink); }
 .showcase-image { min-width: 0; margin: 0; }
 .image-view-trigger { display: grid; width: 100%; min-width: 0; place-items: center; overflow: hidden; padding: 0; border: 1px solid var(--line); color: inherit; background: #100d14; cursor: zoom-in; }
 .showcase-image .image-view-trigger { aspect-ratio: 1.5; }
