@@ -16,5 +16,6 @@ Object.assign(window.PORTFOLIO_EN, {
     closeImage: "Close image viewer",
     previousImage: "Previous image",
     nextImage: "Next image",
+    visit: "Visit website",
     viewSource: "View source on GitHub"
 });
