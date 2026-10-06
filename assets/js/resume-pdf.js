@@ -1,4 +1,4 @@
-window.downloadResumePdf = function (portfolio, language, translations) {
+window.downloadResumePdf = async function (portfolio, language, translations) {
     const width = 595;
     const height = 842;
     const left = 48;
@@ -8,10 +8,36 @@ window.downloadResumePdf = function (portfolio, language, translations) {
     let commands = [];
     let cursorY = 0;
     const isDutch = language === "nl";
-    const projectTranslations = isDutch ? translations.projects : {};
     const profile = portfolio.profile;
     const resume = portfolio.resume;
-    const localizedProject = (project, key) => projectTranslations[project.id]?.[key] || project[key] || "";
+    const portraitHex = await new Promise((resolve) => {
+        const image = new Image();
+        image.onload = () => {
+            try {
+                const cropSize = Math.min(image.naturalWidth, image.naturalHeight);
+                const canvas = document.createElement("canvas");
+                canvas.width = 160;
+                canvas.height = 160;
+                canvas.getContext("2d").drawImage(
+                    image,
+                    (image.naturalWidth - cropSize) / 2,
+                    (image.naturalHeight - cropSize) / 2,
+                    cropSize,
+                    cropSize,
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+                const binary = atob(canvas.toDataURL("image/jpeg", 0.86).split(",")[1]);
+                resolve(Array.from(binary, (character) => character.charCodeAt(0).toString(16).padStart(2, "0")).join(""));
+            } catch {
+                resolve("");
+            }
+        };
+        image.onerror = () => resolve("");
+        image.src = profile.portrait;
+    });
     const labels = isDutch ? {
         role: translations.resume.experienceRole,
         location: translations.resume.experienceLocation,
@@ -24,7 +50,7 @@ window.downloadResumePdf = function (portfolio, language, translations) {
         experience: "Werkervaring",
         skills: "Vaardigheden",
         languages: "Talen",
-        projects: "Geselecteerd werk",
+        personalInfo: translations.ui.personalInfoRequest,
         present: "heden"
     } : {
         role: resume.experience[0].role,
@@ -38,7 +64,7 @@ window.downloadResumePdf = function (portfolio, language, translations) {
         experience: "Experience",
         skills: "Skills",
         languages: "Languages",
-        projects: "Selected work",
+        personalInfo: translations.ui.personalInfoRequest,
         present: "Present"
     };
     const rgb = (hex) => {
@@ -132,6 +158,7 @@ window.downloadResumePdf = function (portfolio, language, translations) {
         addRect(0, 0, width, 5, pinkColor);
         addRect(width - 184, 5, 184, 4, rgb("B98BFF"));
         addText("SOFTWARE / SYSTEMS / DEVELOPMENT", left, 51, 8, "F1", pinkColor);
+        if (portraitHex) commands.push("q 52 0 0 52 495 767 cm /Portrait Do Q");
         addText(profile.name, left, 91, 29, "F2", textColor);
         addText(`${isDutch ? "Softwareontwikkelaar" : "Software developer"} / ${isDutch ? "Nederland" : "The Netherlands"}`, left, 111, 9, "F1", lilacColor);
         addText(profile.email, width - right - 181, 76, 8, "F1", mutedColor);
@@ -166,19 +193,14 @@ window.downloadResumePdf = function (portfolio, language, translations) {
     addSection("04", labels.languages);
     const languages = isDutch ? ["Nederlands", "Engels"] : resume.languages;
     addParagraph(languages.join("  /  "), { size: 9, color: lilacColor, after: 3 });
-
-    addSection("05", labels.projects);
-    const projectIds = isDutch ? ["factsheets-generator", "materiaal-management", "boxing-data-game"] : resume.selectedProjects;
-    projectIds.map((id) => portfolio.projects.find((project) => project.id === id)).filter(Boolean).forEach((project) => {
-        addParagraph(localizedProject(project, "title"), { size: 9.5, font: "F2", color: lilacColor, after: 1 });
-        addParagraph(localizedProject(project, "summary"), { size: 8, lineHeight: 11.2, after: 4 });
-    });
+    addParagraph(labels.personalInfo, { size: 8.5, color: pinkColor, after: 3 });
 
     pages.push(commands.join("\n"));
     pages.forEach((pageCommands, index) => {
         pages[index] = `${pageCommands}\n${"0.31 0.24 0.34"} RG 0.55 w ${left} 33 m ${width - right} 33 l S\nBT /F1 7 Tf ${mutedColor} rg 1 0 0 1 ${left} 21 Tm ${escapePdfString(profile.name)} Tj ET\nBT /F1 7 Tf ${mutedColor} rg 1 0 0 1 ${width - right - 42} 21 Tm ${escapePdfString(`${index + 1} / ${pages.length}`)} Tj ET`;
     });
 
+    const portraitObjectId = 5 + pages.length * 2;
     const objects = [
         "<< /Type /Catalog /Pages 2 0 R >>",
         `<< /Type /Pages /Kids [${pages.map((_, index) => `${5 + index * 2} 0 R`).join(" ")}] /Count ${pages.length} >>`,
@@ -188,9 +210,13 @@ window.downloadResumePdf = function (portfolio, language, translations) {
     pages.forEach((pageCommands, index) => {
         const pageId = 5 + index * 2;
         const streamId = pageId + 1;
-        objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${width} ${height}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ${streamId} 0 R >>`);
+        const imageResource = portraitHex ? ` /XObject << /Portrait ${portraitObjectId} 0 R >>` : "";
+        objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${width} ${height}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >>${imageResource} >> /Contents ${streamId} 0 R >>`);
         objects.push(`<< /Length ${pageCommands.length} >>\nstream\n${pageCommands}\nendstream`);
     });
+    if (portraitHex) {
+        objects.push(`<< /Type /XObject /Subtype /Image /Width 160 /Height 160 /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /ASCIIHexDecode /Length ${portraitHex.length + 1} >>\nstream\n${portraitHex}>\nendstream`);
+    }
     let pdf = "%PDF-1.4\n%PortfolioResume\n";
     const offsets = [0];
     objects.forEach((object, index) => {

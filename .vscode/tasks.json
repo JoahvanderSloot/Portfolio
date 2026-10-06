@@ -1,0 +1,30 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Copy portfolio update screenshots",
+			"type": "shell",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-NonInteractive",
+				"-Command",
+				"Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\GBconnecting.png' -Destination 'assets\\images\\Updates\\GrappleBattleConnecting.png'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\GBsettingsMenu.png' -Destination 'assets\\images\\Updates\\GrappleBattleSettings.png'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\GBwaitingForOpponents.png' -Destination 'assets\\images\\Updates\\GrappleBattleWaiting.png'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\Merge packing main menu.png' -Destination 'assets\\images\\Updates\\MergePackingMenu.png'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\MergePackingNextItem.png' -Destination 'assets\\images\\Updates\\MergePackingNextItem.png'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\SlipstreamExtange.jpg' -Destination 'assets\\images\\Updates\\SlipstreamExchange.jpg'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\SPaceFighterLeaderboard.png' -Destination 'assets\\images\\Updates\\SpaceFighterLeaderboard.png'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\walchcredits.png' -Destination 'assets\\images\\Updates\\WALCHOriginsCredits.png'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\walchOGdayFinished.png' -Destination 'assets\\images\\Updates\\WALCHOriginsDayFinished.png'; Copy-Item -LiteralPath 'c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages\\walchtutorial.png' -Destination 'assets\\images\\Updates\\WALCHOriginsTutorial.png'; Get-ChildItem assets\\images\\Updates | Select-Object Name,Length"
+			]
+		},
+		{
+			"label": "Copy supplied update images",
+			"type": "shell",
+			"command": "robocopy",
+			"args": [
+				"c:\\Users\\joahv\\OneDrive\\Bureaublad\\Portfolio Updates\\IMages",
+				"assets\\images\\Updates",
+				"*.*",
+				"/E",
+				"/R:0",
+				"/W:0"
+			],
+			"problemMatcher": []
+		}
+	]
+}

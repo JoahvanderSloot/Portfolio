@@ -1,19 +1,32 @@
 # Editing portfolio content
 
-Project and skill records live in `assets/js/portfolio-data.js`; Dutch text overrides live in `assets/js/portfolio-nl.js`. English is the default copy in the data file. New visible project or skill text should have a matching Dutch entry when you want both site languages complete.
+Skill and resume records live in `assets/js/portfolio-data.js`; each project has its own file in `assets/js/projects/<id>.js`; Dutch text overrides live in `assets/js/portfolio-nl.js`. English is the default copy. New visible project or skill text should have a matching Dutch entry when you want both site languages complete.
+
+## Folder layout
+
+```
+assets/js/projects/<id>.js          one file per project
+assets/images/projects/<id>/        cover.png, screenshot-1.png, other media
+```
 
 ## Add a project
 
-Copy a project object inside the `projects` array. Choose a unique lowercase `id`, use paths under `assets/images/`, and keep showcase excerpts short. Cards automatically link to `project.html?id=your-id`; the older `project1.html` through `project9.html` addresses remain available for the existing projects. A cover image is optional; when omitted, the project uses a typographic cover until media is ready.
+1. Create `assets/js/projects/my-new-game.js` (template below) with a unique lowercase `id`.
+2. Put its images in `assets/images/projects/my-new-game/`.
+3. Add the `id` to `projectIds` in `assets/js/portfolio-data.js`; the list order is the display order.
+
+Cards link to `project.html?id=your-id`, so no new HTML page is needed (`project1.html` to `project9.html` only remain for old links). A cover image is optional; when omitted, the project uses a typographic cover.
+
+In `showcase`, code snippets always render on the left and images on the right. The nth snippet pairs with the nth image; snippets without an image stay left with an empty right side. Extra `screenshots` that are not in `showcase` appear in the gallery below.
 
 ```js
-{
+(window.PORTFOLIO_PROJECTS ||= []).push({
     id: "my-new-game",
     title: "My New Game",
     category: "Software",
     year: "2026",
     date: "12 October 2026",
-    image: "assets/images/MyNewGame.png",
+    image: "assets/images/projects/my-new-game/cover.png",
     imageAlt: "A scene from My New Game",
     summary: "One sentence describing the player experience.",
     description: "A short explanation of what the project is.",
@@ -21,14 +34,14 @@ Copy a project object inside the `projects` array. Choose a unique lowercase `id
     tools: ["Unity", "C#"],
     tags: ["unity", "csharp", "teamwork"],
     duration: "3 weeks, 4-person team",
-    screenshots: ["assets/images/ScreenShots/MyNewGame1.png"],
+    screenshots: ["assets/images/projects/my-new-game/screenshot-1.png"],
     itch: "https://example.itch.io/my-new-game",
     github: "https://github.com/example/my-new-game",
     showcase: [
         { type: "code", title: "A useful excerpt", language: "csharp", code: `void Start()\n{\n    Debug.Log("Ready");\n}` },
-        { type: "image", src: "assets/images/ScreenShots/MyNewGame1.png", alt: "A scene from My New Game", caption: "A short image caption." }
+        { type: "image", src: "assets/images/projects/my-new-game/screenshot-1.png", alt: "A scene from My New Game", caption: "A short image caption." }
     ]
-}
+});
 ```
 
 Use `youtube` with a YouTube embed URL or `video` with a local MP4 when available. `embed` may be added for an itch.io playable embed.
