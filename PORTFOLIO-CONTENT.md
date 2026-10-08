@@ -28,6 +28,8 @@ In `showcase`, code snippets always render on the left and images on the right. 
     date: "12 October 2026",
     image: "assets/images/projects/my-new-game/cover.png",
     imageAlt: "A scene from My New Game",
+    imageFit: "contain",
+    icon: "assets/images/projects/my-new-game/icon.png",
     summary: "One sentence describing the player experience.",
     description: "A short explanation of what the project is.",
     contribution: "What I built, and what the team built.",
@@ -35,6 +37,7 @@ In `showcase`, code snippets always render on the left and images on the right. 
     tags: ["unity", "csharp", "teamwork"],
     duration: "3 weeks, 4-person team",
     screenshots: ["assets/images/projects/my-new-game/screenshot-1.png"],
+    screenshotAlts: ["A scene from My New Game"],
     itch: "https://example.itch.io/my-new-game",
     github: "https://github.com/example/my-new-game",
     showcase: [
@@ -51,8 +54,13 @@ Use `youtube` with a YouTube embed URL or `video` with a local MP4 when availabl
 Add a skill record to `skills.hard` or `skills.soft`. Its `id` becomes the link anchor. Use the same ID in project `tags` to show that skill on project cards, detail pages, and the skill's related-project links. The skill's `projects` list is optional and can add an explicit project association without showing the skill as a project tag.
 
 ```js
-{ id: "level-design", name: "Level design", group: "Game development", level: "Project experience", description: "Build readable spaces that support the player and the game loop.", projects: [] }
+{ id: "level-design", name: "Level design", group: "Game development", level: "Project experience", description: "Build readable spaces that support the player and the game loop.", projects: [], filterGroup: "Game" }
 ```
+
+The skills page groups hard skills under `Web`, `Software`, or `Game`, and soft skills under `Team`, `Solo`, or `Leadership`. Set `filterGroup` to one of those values so the skill appears in the right filter. The default **Best to worst** ordering ranks professional experience first, followed by primary, experienced, project experience, working knowledge, and foundational skills.
+
+Set `imageFit: "contain"` when a project cover is a screenshot or banner that should stay fully visible instead of being cropped. Omit it to keep the default cropped cover style.
+`icon` is an optional small app icon shown on the project card, and `screenshotAlts` provides matching descriptions for gallery images in screenshot order.
 
 To translate a new skill, add the same ID to the `skills` object in `assets/js/portfolio-nl.js` with Dutch `name`, `group`, `level`, and `description` fields.
 

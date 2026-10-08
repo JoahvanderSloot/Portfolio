@@ -1,4 +1,50 @@
 (window.PORTFOLIO_PROJECTS ||= []).push({
-    id: "materiaal-management", title: "Materiaalmanagement", category: "Software", year: "2025-26", image: "", imageAlt: "", coverLabel: "MATERIAAL / MANAGEMENT",
-    summary: "A material-management software project developed during my SimCen Land internship.", description: "Materiaalmanagement is one of the software projects I worked on during my software development internship at SimCen Land.", contribution: "Developed as part of my internship work. Further technical details are not included here.", tools: [], tags: ["software-development", "simulation-systems", "technical-design"], duration: "Internship project", date: "2025–2026", screenshots: [], showcase: []
+    id: "materiaal-management",
+    title: "Materiaalmanagement",
+    category: "Software",
+    year: "2026",
+    image: "assets/images/projects/materiaal-management/cover.png",
+    imageAlt: "Materiaalmanagement inventory dashboard",
+    imageFit: "contain",
+    icon: "assets/images/projects/materiaal-management/icon.png",
+    summary: "A desktop inventory system for tracking equipment, locations, status, packing lists, and loans at SimCen Land.",
+    description: "Materiaalmanagement keeps a local inventory organized by account and storage location. Staff can search and filter equipment, track availability and maintenance, prepare packing lists and loans, import returns, export the full inventory, and manage locations and statuses. It was a two-person project completed in two weeks and released on 1 October 2026.",
+    contribution: "I implemented the core application logic for accounts, inventory items, status and location management, packing lists, loans, returns, and inventory import and export. My teammate built the user interface and the chest, stack, and logging functionality.",
+    tools: ["C#", ".NET 8", "WPF", "XAML", "ClosedXML"],
+    tags: ["software-development", "simulation-systems", "technical-design", "csharp", "wpf", "xaml", "teamwork"],
+    duration: "2 weeks, 2-person team",
+    date: "1 Oct 2026",
+    github: "https://github.com/Nqrdie/MateriaalManagement",
+    screenshots: [
+        "assets/images/projects/materiaal-management/inventory.png",
+        "assets/images/projects/materiaal-management/new-item.png",
+        "assets/images/projects/materiaal-management/item-details.png",
+        "assets/images/projects/materiaal-management/item-card.png",
+        "assets/images/projects/materiaal-management/packing-list.png",
+        "assets/images/projects/materiaal-management/complete-packing-list.png",
+        "assets/images/projects/materiaal-management/packing-list-export.png",
+        "assets/images/projects/materiaal-management/statuses.png",
+        "assets/images/projects/materiaal-management/logs.png",
+        "assets/images/projects/materiaal-management/login.png"
+    ],
+    screenshotAlts: [
+        "Inventory dashboard with item cards, search, filters, and statistics",
+        "Add an item with its name, code, location, quantity, and description",
+        "Edit item details including status and description",
+        "Inventory item card with its location, status, and actions",
+        "Review and manage items in a packing list",
+        "Complete a packing list and enter its title and description",
+        "Example of the exported packing-list spreadsheet",
+        "Manage inventory statuses and their colors",
+        "Browse the activity log",
+        "Sign in to the Materiaalmanagement application"
+    ],
+    showcase: [
+        { type: "code", title: "Authenticate a user against hashed passwords", language: "csharp", source: "https://github.com/Nqrdie/MateriaalManagement/blob/main/AccountService.cs", code: "public static UserAccount? Authenticate(string username, string password)\n{\n    var accounts = LoadAccounts();\n    var account = accounts.FirstOrDefault(a =>\n        a.Username.Equals(username.Trim(), StringComparison.OrdinalIgnoreCase));\n    if (account is null)\n        return null;\n    return account.PasswordHash == HashPassword(password) ? account : null;\n}\n\nprivate static string HashPassword(string password)\n{\n    var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(password));\n    return Convert.ToHexString(bytes);\n}" },
+        { type: "image", src: "assets/images/projects/materiaal-management/login.png", alt: "Sign in to the Materiaalmanagement application", caption: "The sign-in screen backed by the account service." },
+        { type: "code", title: "Statuses with a color and list availability", language: "csharp", source: "https://github.com/Nqrdie/MateriaalManagement/blob/main/InventoryStatus.cs", code: "public static InventoryStatus InOpslag { get; } = new(1, \"In opslag\", \"Green\");\npublic static InventoryStatus Beschikbaar { get; } = new(2, \"Beschikbaar\", \"LimeGreen\");\npublic static InventoryStatus Bruikleen { get; } = new(4, \"Bruikleen\", \"Blue\");\npublic static InventoryStatus Onderhoud { get; } = new(5, \"Onderhoud\", \"Orange\");\n\npublic string ColorHex\n{\n    get => _colorHex;\n    set\n    {\n        if (_colorHex == value) return;\n        _colorHex = value;\n        if (new BrushConverter().ConvertFromString(value) is Brush brush)\n            _brush = brush;\n        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Brush)));\n    }\n}" },
+        { type: "image", src: "assets/images/projects/materiaal-management/statuses.png", alt: "Manage inventory statuses and their colors", caption: "Statuses and their colors can be managed in the app." },
+        { type: "code", title: "Make sure an admin account always exists", language: "csharp", source: "https://github.com/Nqrdie/MateriaalManagement/blob/main/AccountService.cs", code: "var admin = accounts.FirstOrDefault(a =>\n    a.Username.Equals(AdminUsername, StringComparison.OrdinalIgnoreCase));\nif (admin is null)\n    accounts.Insert(0, CreateAccount(AdminUsername, DefaultAdminPassword, true));\nelse\n{\n    admin.IsAdmin = true;\n    if (string.IsNullOrWhiteSpace(admin.PasswordHash))\n        admin.PasswordHash = HashPassword(DefaultAdminPassword);\n}\n\nSaveAccounts(accounts);" },
+        { type: "image", src: "assets/images/projects/materiaal-management/inventory.png", alt: "Inventory dashboard with item cards, search, filters, and statistics", caption: "The inventory dashboard shown after signing in." }
+    ]
 });
