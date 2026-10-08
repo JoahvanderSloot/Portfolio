@@ -13,5 +13,18 @@
 </head>
 <body data-page="skills">
     <div id="app"></div>
+    <button type="button" class="scroll-top" id="scroll-top" aria-label="Back to top" hidden>↑</button>
+    <script>
+        (function () {
+            var btn = document.getElementById("scroll-top");
+            var update = function () { btn.hidden = window.scrollY < 400; };
+            window.addEventListener("scroll", update, { passive: true });
+            btn.addEventListener("click", function () {
+                var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+            });
+            update();
+        })();
+    </script>
 </body>
 </html>

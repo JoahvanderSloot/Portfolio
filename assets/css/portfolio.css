@@ -607,3 +607,29 @@ body.viewer-open { overflow: hidden; }
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     .reveal { opacity: 1; transform: none; }
 }
+
+.scroll-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--panel-raised);
+    color: var(--lilac);
+    font: 20px/1 var(--sans);
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.scroll-top[hidden] { display: none; }
+
+.scroll-top:hover,
+.scroll-top:focus-visible {
+    background: var(--purple);
+    color: var(--night);
+    transform: translateY(-2px);
+}
