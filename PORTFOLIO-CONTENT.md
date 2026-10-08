@@ -51,18 +51,18 @@ Use `youtube` with a YouTube embed URL or `video` with a local MP4 when availabl
 
 ## Add a skill
 
-Add a skill record to `skills.hard` or `skills.soft`. Its `id` becomes the link anchor. Use the same ID in project `tags` to show that skill on project cards, detail pages, and the skill's related-project links. The skill's `projects` list is optional and can add an explicit project association without showing the skill as a project tag.
+Add a skill record to `skills.hard` or `skills.soft`. Its `id` becomes the link anchor. Use the same ID in project `tags` to show that skill on project cards, detail pages, and the skill's related-project links. The skill's `projects` list is optional and can add an explicit project association without showing the skill as a project tag. Skills display in the order listed; that order is the proficiency ranking. Each card shows its numbered level separately from the `experience` context, such as years of use or professional/project experience.
 
 ```js
-{ id: "level-design", name: "Level design", group: "Game development", level: "Project experience", description: "Build readable spaces that support the player and the game loop.", projects: [], filterGroup: "Game" }
+{ id: "level-design", name: "Level design", group: "Game development", level: "working", years: 1, projectExperience: true, description: "Build readable spaces that support the player and the game loop.", projects: [], filterGroup: "Game" }
 ```
 
-The skills page groups hard skills under `Web`, `Software`, or `Game`, and soft skills under `Team`, `Solo`, or `Leadership`. Set `filterGroup` to one of those values so the skill appears in the right filter. The default **Best to worst** ordering ranks professional experience first, followed by primary, experienced, project experience, working knowledge, and foundational skills.
+The skills page groups hard skills under `Web`, `Software`, or `Game`, and soft skills under `Team`, `Solo`, or `Leadership`. Set `filterGroup` to one of those values so the skill appears in the right filter.
 
 Set `imageFit: "contain"` when a project cover is a screenshot or banner that should stay fully visible instead of being cropped. Omit it to keep the default cropped cover style.
 `icon` is an optional small app icon shown on the project card, and `screenshotAlts` provides matching descriptions for gallery images in screenshot order.
 
-To translate a new skill, add the same ID to the `skills` object in `assets/js/portfolio-nl.js` with Dutch `name`, `group`, `level`, and `description` fields.
+To translate a new skill, add the same ID to the `skills` object in `assets/js/portfolio-nl.js` with Dutch `name`, `group`, and `description` fields. The `level` uses `advanced`, `working`, `practiced`, or `developing`. Add `years`, `projectExperience`, and `professionalExperience` to record experience separately from proficiency.
 
 ## Translate a project
 
@@ -74,8 +74,8 @@ The web resume at `resume.html` and its downloadable PDF are both rendered from 
 
 ## Existing skill IDs
 
-Hard skills: `software-development`, `simulation-systems`, `technical-design`, `database`, `svelte`, `unity`, `csharp`, `gameplay`, `ui`, `multiplayer`, `html`, `css`, `javascript`, `git`, `blender`, `php`, `p5js`.
+Hard skills: `software-development`, `csharp`, `git`, `unity`, `wpf`, `technical-design`, `design-doc`, `ui`, `javascript`, `html`, `css`, `xaml`, `gameplay`, `2d`, `p5js`, `simulation-systems`, `multiplayer`, `database`, `php`, `arduino`.
 
-Soft skills: `presenting`, `teamwork`, `communication`, `planning`, `adaptability`, `problem-solving`, `creative-thinking`.
+Soft skills: `problem-solving`, `adaptability`, `communication`, `creative-thinking`, `teamwork`, `planning`, `presenting`.
 
 Project categories currently used are `Software`, `Web`, and `Game`. The archive only displays filters for categories that have at least one project entry. The language toggle stores its selection between pages and supports `?lang=en` and `?lang=nl` for shareable language-specific links.

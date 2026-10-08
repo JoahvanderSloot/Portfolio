@@ -28,8 +28,8 @@
         : skill[key] || "";
     const skillGlyph = (skill) => ({
         "software-development": "{}", "simulation-systems": "◉", "technical-design": "⌘",
-        database: "▤", svelte: "S", unity: "U", csharp: "{}", gameplay: "▶", ui: "▣",
-        multiplayer: "♟", html: "<> ", css: "#", javascript: "JS", git: "⑂", blender: "◇",
+        database: "▤", unity: "U", csharp: "{}", gameplay: "▶", ui: "▣",
+        multiplayer: "♟", html: "<> ", css: "#", javascript: "JS", git: "⑂",
         php: "PHP", p5js: "p5", presenting: "↗", teamwork: "♧", communication: "↔",
         planning: "✓", adaptability: "↻", "problem-solving": "?", "creative-thinking": "✳"
     }[skill.id] || skill.symbol || skill.name.slice(0, 2));
@@ -39,6 +39,17 @@
     const categoryLabel = (category) => language === "nl"
         ? ({ Software: translate("software"), Web: translate("web"), Game: translate("games") }[category] || category)
         : category;
+    const skillLevelLabel = (skill) => translate(({
+        advanced: "skillLevelAdvanced",
+        working: "skillLevelWorking",
+        practiced: "skillLevelPracticed",
+        developing: "skillLevelDeveloping"
+    })[skill.level] || "level");
+    const skillExperience = (skill) => [
+        skill.years ? `${skill.years} ${translate(skill.years === 1 ? "year" : "years")}` : "",
+        skill.projectExperience ? translate("projectExperience") : "",
+        skill.professionalExperience ? translate("professionalExperience") : ""
+    ].filter(Boolean).join(" / ");
     const skillGroupLabel = (category) => translate(({
         Web: "skillWeb", Software: "skillSoftware", Game: "skillGame",
         Team: "skillTeam", Solo: "skillSolo", Leadership: "skillLeadership"
@@ -92,12 +103,7 @@
             { src: "assets/images/about/about-2.jpeg", alt: "Joah at a cafe" },
             { src: "assets/images/about/about-3.jpeg", alt: "Joah at an outdoor market" }
         ];
-        const featuredSkills = [
-            data.skills.hard.find((skill) => skill.id === "software-development"),
-            data.skills.hard.find((skill) => skill.id === "csharp"),
-            data.skills.soft.find((skill) => skill.id === "teamwork"),
-            data.skills.soft.find((skill) => skill.id === "presenting")
-        ].filter(Boolean);
+        const featuredSkills = [...data.skills.hard.slice(0, 3), data.skills.soft[0]].filter(Boolean);
         return `<main class="page-content home-page">
             <section class="hero" aria-labelledby="hero-title">
                 <div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span> ${escapeHTML(localizedProfile("location"))} / ${escapeHTML(translate("softwareAndSystems"))}</p><h1 id="hero-title">${escapeHTML(data.profile.name)}<span class="hero-period">.</span></h1><p class="hero-role">${escapeHTML(localizedProfile("role"))}</p><p class="hero-intro">${escapeHTML(localizedProfile("intro"))}</p><p class="hero-proof">${escapeHTML(language === "nl" ? translations.resume.headline : data.resume.headline)}</p><div class="hero-actions"><a class="button button-primary" href="allProjects.html">${escapeHTML(translate("exploreWork"))} <span aria-hidden="true">↗</span></a><a class="text-link" href="resume.html">${escapeHTML(translate("viewResume"))} <span aria-hidden="true">↗</span></a></div></div>
@@ -105,7 +111,7 @@
                 <a class="scroll-cue" href="#selected-work"><span></span> ${escapeHTML(translate("scrollToExplore"))}</a>
             </section>
             <section id="selected-work" class="content-section" aria-labelledby="work-title"><div class="section-heading"><div><p class="eyebrow">${escapeHTML(translate("selectedWork"))}</p><h2 id="work-title">${escapeHTML(translate("highlightedProjects"))}</h2></div><a class="text-link" href="allProjects.html">${escapeHTML(translate("allProjects"))} <span aria-hidden="true">↗</span></a></div><div class="project-grid">${featured.map(projectCard).join("")}</div><p class="work-note">${escapeHTML(translate("workNote"))}</p></section>
-            <section class="content-section skills-band" aria-labelledby="skills-title"><div class="section-heading"><div><p class="eyebrow">${escapeHTML(translate("toolsAndPractice"))}</p><h2 id="skills-title">${escapeHTML(translate("skills"))}</h2></div><a class="text-link" href="skills.html">${escapeHTML(translate("allSkills"))} <span aria-hidden="true">↗</span></a></div><div class="skill-overview">${featuredSkills.map((skill) => `<a class="skill-chip" href="skills.html#${escapeHTML(skill.id)}"><span class="skill-chip-mark" aria-hidden="true">${escapeHTML(skillGlyph(skill))}</span><span><strong>${escapeHTML(localizedSkill(skill, "name"))}</strong><small>${escapeHTML(localizedSkill(skill, "group"))}</small></span><span class="skill-level">${escapeHTML(localizedSkill(skill, "level"))}</span></a>`).join("")}</div><p class="skills-note">${escapeHTML(translate("skillsNote"))}</p></section>
+            <section class="content-section skills-band" aria-labelledby="skills-title"><div class="section-heading"><div><p class="eyebrow">${escapeHTML(translate("toolsAndPractice"))}</p><h2 id="skills-title">${escapeHTML(translate("skills"))}</h2></div><a class="text-link" href="skills.html">${escapeHTML(translate("allSkills"))} <span aria-hidden="true">↗</span></a></div><div class="skill-overview">${featuredSkills.map((skill) => `<a class="skill-chip" href="skills.html#${escapeHTML(skill.id)}"><span class="skill-chip-mark" aria-hidden="true">${escapeHTML(skillGlyph(skill))}</span><span><strong>${escapeHTML(localizedSkill(skill, "name"))}</strong><small>${escapeHTML(localizedSkill(skill, "group"))}</small></span><span class="skill-level">${escapeHTML(skillLevelLabel(skill))}</span></a>`).join("")}</div><p class="skills-note">${escapeHTML(translate("skillsNote"))}</p></section>
             <section id="about" class="content-section about-band"><figure class="about-portrait" data-about-carousel data-about-photos="${escapeHTML(JSON.stringify(aboutPhotos))}"><img src="${escapeHTML(aboutPhotos[0].src)}" alt="${escapeHTML(aboutPhotos[0].alt)}" loading="lazy"><figcaption aria-live="polite"><span data-about-photo-count>1 / ${aboutPhotos.length}</span></figcaption><button class="about-photo-previous" type="button" aria-label="${escapeHTML(translate("previousPhoto"))}">‹</button><button class="about-photo-next" type="button" aria-label="${escapeHTML(translate("nextPhoto"))}">›</button></figure><div class="about-story"><div class="about-marker"><span>${escapeHTML(translate("aboutMarker"))}</span><span class="marker-line"></span></div><p class="eyebrow">${escapeHTML(translate("curiosity"))}</p><h2>${escapeHTML(translate("aLittleAboutMe"))}</h2><p class="about-copy">${escapeHTML(localizedProfile("about"))}</p><a class="text-link" href="skills.html">${escapeHTML(translate("exploreSkills"))} <span aria-hidden="true">↗</span></a></div></section>
             <section id="contact" class="contact-band"><div><p class="eyebrow">${escapeHTML(translate("projectInMind"))}</p><h2>${escapeHTML(translate("letsBuildTogether"))}</h2></div><a class="contact-email" href="mailto:${escapeHTML(data.profile.email)}">${escapeHTML(data.profile.email)} <span aria-hidden="true">↗</span></a><div class="social-links">${socialLinks()}</div></section>
         </main>`;
@@ -119,21 +125,12 @@
 
     function skillCard(skill, index) {
         const related = data.projects.filter((project) => (skill.projects || []).includes(project.id) || project.tags.includes(skill.id));
-        const level = skill.level.toLowerCase();
-        const rank = level.includes("professional") || level.includes("hoofdervaring") ? 5
-            : level === "primary" || level === "hoofdtool" || level === "hoofdtaal" ? 4
-                : level.includes("experienced") || level.includes("ervaren") ? 3
-                    : level.includes("project experience") || level.includes("projectervaring") ? 2
-                        : level.includes("working knowledge") || level.includes("praktijkkennis") ? 1 : 0;
-        const relatedLinks = [
-            ...related.map((project) => `<a href="${escapeHTML(projectLink(project))}">${escapeHTML(localized(project, "title"))}</a>`),
-            ...(skill.resumeExperience ? [`<a href="resume.html">${escapeHTML(translate("resumeExperience"))}</a>`] : [])
-        ];
-        return `<article class="skill-card reveal" id="${escapeHTML(skill.id)}" data-skill-category="${escapeHTML(skill.filterGroup)}" data-skill-rank="${rank}" data-skill-order="${index}" style="--delay:${Math.min(index, 8) * 45}ms"><div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><span class="skill-level">${escapeHTML(localizedSkill(skill, "level"))}</span></div><div class="skill-illustration" aria-hidden="true">${escapeHTML(skillGlyph(skill))}</div><p class="eyebrow">${escapeHTML(localizedSkill(skill, "group"))}</p><h3>${escapeHTML(localizedSkill(skill, "name"))}</h3><p>${escapeHTML(localizedSkill(skill, "description"))}</p>${relatedLinks.length ? `<div class="skill-project-links"><span>${escapeHTML(skill.resumeExperience ? translate("experience") : translate("usedIn"))}</span>${relatedLinks.join("")}</div>` : ""}</article>`;
+        const relatedLinks = related.map((project) => `<a href="${escapeHTML(projectLink(project))}">${escapeHTML(localized(project, "title"))}</a>`);
+        return `<article class="skill-card reveal" id="${escapeHTML(skill.id)}" data-skill-category="${escapeHTML(skill.filterGroup)}" style="--delay:${Math.min(index, 8) * 45}ms"><div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span><div class="skill-card-meta"><span class="skill-level">${escapeHTML(translate("level"))}: ${escapeHTML(skillLevelLabel(skill))}</span><span class="skill-experience">${escapeHTML(translate("experience"))}: ${escapeHTML(skillExperience(skill))}</span></div></div><div class="skill-illustration" aria-hidden="true">${escapeHTML(skillGlyph(skill))}</div><p class="eyebrow">${escapeHTML(localizedSkill(skill, "group"))}</p><h3>${escapeHTML(localizedSkill(skill, "name"))}</h3><p>${escapeHTML(localizedSkill(skill, "description"))}</p>${relatedLinks.length ? `<div class="skill-project-links"><span>${escapeHTML(translate("usedIn"))}</span>${relatedLinks.join("")}</div>` : ""}</article>`;
     }
 
     function skillControls(section, categories) {
-        return `<div class="skill-controls"><label><span class="visually-hidden">${escapeHTML(translate(section === "hard" ? "filterHardSkills" : "filterSoftSkills"))}</span><select class="skill-filter" aria-label="${escapeHTML(translate(section === "hard" ? "filterHardSkills" : "filterSoftSkills"))}"><option value="all">${escapeHTML(translate("allSkillGroups"))}</option>${categories.map((category) => `<option value="${escapeHTML(category)}">${escapeHTML(skillGroupLabel(category))}</option>`).join("")}</select></label><label><span class="visually-hidden">${escapeHTML(translate("skillOrder"))}</span><select class="skill-sort" aria-label="${escapeHTML(translate("skillOrder"))}"><option value="best">${escapeHTML(translate("bestToWorst"))}</option><option value="worst">${escapeHTML(translate("worstToBest"))}</option></select></label></div>`;
+        return `<div class="skill-controls"><label><span class="visually-hidden">${escapeHTML(translate(section === "hard" ? "filterHardSkills" : "filterSoftSkills"))}</span><select class="skill-filter" aria-label="${escapeHTML(translate(section === "hard" ? "filterHardSkills" : "filterSoftSkills"))}"><option value="all">${escapeHTML(translate("allSkillGroups"))}</option>${categories.map((category) => `<option value="${escapeHTML(category)}">${escapeHTML(skillGroupLabel(category))}</option>`).join("")}</select></label></div>`;
     }
 
     function skillsPage() {
@@ -186,14 +183,19 @@
         const entries = showcase.map((item, index) => ({ item, index }));
         const codeEntries = entries.filter(({ item }) => item.type !== "image");
         const imageEntries = entries.filter(({ item }) => item.type === "image");
-        const rowCount = Math.max(codeEntries.length, imageEntries.length);
+        const pairedImageEntries = imageEntries.slice(0, codeEntries.length);
+        const rowCount = codeEntries.length;
         const media = Array.from({ length: rowCount }, (_, row) => {
             const code = codeEntries[row];
-            const image = imageEntries[row];
-            const single = !code || !image;
-            return `<div class="showcase-row${single ? " showcase-row-single" : ""}">${code ? showcaseHTML(code.item, code.index) : ""}${image ? showcaseHTML(image.item, image.index) : ""}</div>`;
+            const image = pairedImageEntries[row];
+            const single = !image;
+            return `<div class="showcase-row${single ? " showcase-row-single" : ""}">${showcaseHTML(code.item, code.index)}${image ? showcaseHTML(image.item, image.index) : ""}</div>`;
         }).join("");
-        const gallery = screenshots.filter((src) => !showcase.some((item) => item.type === "image" && item.src === src));
+        const pairedImageSources = new Set(pairedImageEntries.map(({ item }) => item.src));
+        const gallery = [
+            ...imageEntries.filter(({ item }) => !pairedImageSources.has(item.src)).map(({ item }) => item.src),
+            ...screenshots.filter((src) => !pairedImageSources.has(src))
+        ].filter((src, index, sources) => sources.indexOf(src) === index);
         const youtubeId = project.youtube?.match(/\/embed\/([^/?]+)/)?.[1];
         const youtubeLink = youtubeId ? `https://www.youtube.com/watch?v=${youtubeId}` : project.youtube;
         const title = localized(project, "title");
@@ -213,7 +215,9 @@
         return `<div class="drawer-backdrop" data-close-drawer></div><aside class="side-drawer" id="site-drawer" aria-label="${escapeHTML(translate("navigate"))}" aria-hidden="true"><div class="drawer-heading"><a class="drawer-brand" href="index.html">J<small>vd</small>S</a><button class="drawer-close" type="button" aria-label="${escapeHTML(translate("close"))}">×</button></div><p class="eyebrow">${escapeHTML(translate("navigate"))}</p><nav class="drawer-nav"><a href="index.html"><span>01</span> ${escapeHTML(translate("overview"))}</a><a href="allProjects.html"><span>02</span> ${escapeHTML(translate("projects"))} <small>${String(data.projects.length).padStart(2, "0")}</small></a><a href="skills.html"><span>03</span> ${escapeHTML(translate("skills"))} <small>${escapeHTML(translate("hardSkills"))} + ${escapeHTML(translate("softSkills"))}</small></a><a href="resume.html"><span>04</span> ${escapeHTML(translate("resume"))}</a><a href="index.html#about"><span>05</span> ${escapeHTML(translate("about"))}</a><a href="index.html#contact"><span>06</span> ${escapeHTML(translate("contact"))}</a></nav><div class="drawer-subnav"><p class="eyebrow">${escapeHTML(translate("highlightedProjects"))}</p>${orderedProjects.slice(0, 5).map((project) => `<a href="${escapeHTML(projectLink(project))}">${escapeHTML(localized(project, "title"))} <span aria-hidden="true">↗</span></a>`).join("")}</div><a class="drawer-contact" href="mailto:${escapeHTML(data.profile.email)}">${escapeHTML(translate("startConversation"))} <span aria-hidden="true">↗</span></a></aside>`;
     }
 
-    const layout = `<header class="site-header"><a class="brand-mark" href="index.html" aria-label="${escapeHTML(data.profile.name)} / ${escapeHTML(translate("home"))}">J<small>vd</small>S</a><a class="header-context" href="${projectForPage ? "allProjects.html" : "index.html"}">${escapeHTML(pageTitle)}<span aria-hidden="true"> / </span>${escapeHTML(translate(projectForPage ? "project" : "portfolio"))}</a><div class="header-actions"><button class="language-toggle" type="button" aria-label="${escapeHTML(language === "nl" ? translations.ui.switchLanguage : window.PORTFOLIO_EN.switchLanguage)}" title="${escapeHTML(language === "nl" ? translations.ui.switchLanguage : window.PORTFOLIO_EN.switchLanguage)}">${language === "nl" ? "NL" : "EN"}</button><button class="menu-toggle" type="button" aria-controls="site-drawer" aria-expanded="false"><span class="menu-lines" aria-hidden="true"><i></i><i></i></span><span>${escapeHTML(translate("menu"))}</span></button></div></header>${sidebar()}${currentPage === "projects" ? projectsPage() : currentPage === "skills" ? skillsPage() : currentPage === "resume" ? resumePage() : projectForPage ? projectDetail(projectForPage) : homePage()}${imageViewer()}<footer class="site-footer"><a href="index.html" class="footer-brand">JvdS / ${escapeHTML(data.profile.name)}</a><span>${language === "nl" ? "Software / systemen / web / games" : "Software / systems / web / games"}</span><a href="resume.html">${escapeHTML(translate("resume"))} ↗</a><a href="mailto:${escapeHTML(data.profile.email)}">${escapeHTML(translate("getInTouch"))} ↗</a></footer>`;
+    const languageSwitchLabel = language === "nl" ? "EN" : "NL";
+    const languageSwitchTitle = language === "nl" ? translations.ui.switchLanguage : window.PORTFOLIO_EN.switchLanguage;
+    const layout = `<header class="site-header"><a class="brand-mark" href="index.html" aria-label="${escapeHTML(data.profile.name)} / ${escapeHTML(translate("home"))}">J<small>vd</small>S</a><a class="header-context" href="${projectForPage ? "allProjects.html" : "index.html"}">${escapeHTML(pageTitle)}<span aria-hidden="true"> / </span>${escapeHTML(translate(projectForPage ? "project" : "portfolio"))}</a><div class="header-actions"><button class="language-toggle" type="button" aria-label="${escapeHTML(languageSwitchTitle)}" title="${escapeHTML(languageSwitchTitle)}">${languageSwitchLabel}</button><button class="menu-toggle" type="button" aria-controls="site-drawer" aria-expanded="false"><span class="menu-lines" aria-hidden="true"><i></i><i></i></span><span>${escapeHTML(translate("menu"))}</span></button></div></header>${sidebar()}${currentPage === "projects" ? projectsPage() : currentPage === "skills" ? skillsPage() : currentPage === "resume" ? resumePage() : projectForPage ? projectDetail(projectForPage) : homePage()}${imageViewer()}<footer class="site-footer"><a href="index.html" class="footer-brand">JvdS / ${escapeHTML(data.profile.name)}</a><span>${language === "nl" ? "Software / systemen / web / games" : "Software / systems / web / games"}</span><a href="resume.html">${escapeHTML(translate("resume"))} ↗</a><a href="mailto:${escapeHTML(data.profile.email)}">${escapeHTML(translate("getInTouch"))} ↗</a></footer>`;
     root.innerHTML = layout;
     document.documentElement.lang = language;
     document.title = `${pageTitle} / ${data.profile.name}`;
@@ -234,22 +238,15 @@
     }
     document.querySelectorAll(".skill-section").forEach((section) => {
         const filter = section.querySelector(".skill-filter");
-        const sort = section.querySelector(".skill-sort");
         const grid = section.querySelector(".skill-grid");
-        if (!filter || !sort || !grid) return;
+        if (!filter || !grid) return;
         const cards = [...grid.querySelectorAll(".skill-card")];
         const updateSkills = () => {
             cards.forEach((card) => {
                 card.hidden = filter.value !== "all" && card.dataset.skillCategory !== filter.value;
             });
-            const direction = sort.value === "best" ? -1 : 1;
-            [...cards].sort((left, right) => (
-                direction * (Number(left.dataset.skillRank) - Number(right.dataset.skillRank))
-                || Number(left.dataset.skillOrder) - Number(right.dataset.skillOrder)
-            )).forEach((card) => grid.append(card));
         };
         filter.addEventListener("change", updateSkills);
-        sort.addEventListener("change", updateSkills);
         updateSkills();
     });
     if (currentPage === "resume") {

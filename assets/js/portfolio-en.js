@@ -1,13 +1,13 @@
 window.PORTFOLIO_EN = {
-    switchLanguage: "Switch to Dutch", menu: "Menu", close: "Close navigation", navigate: "Navigate / Portfolio", overview: "Home", projects: "Projects", skills: "Skills", resume: "Resume", about: "About me", contact: "Contact", featuredProjects: "Highlighted projects", highlightedProjects: "Highlighted projects", startConversation: "Start a conversation", home: "Home", portfolio: "Portfolio", softwareAndSystems: "Software and systems", softwareTag: "SOFTWARE", systemsTag: "SYSTEMS", interactiveTag: "INTERACTIVE", aboutMarker: "ABOUT / 01", inMotion: "In motion", seeItPlay: "See it play.", exploreWork: "Explore my work", viewResume: "View resume", scrollToExplore: "Scroll to explore", selectedWork: "Selected work / 2024—2026", builtToWork: "Built to work.", allProjects: "All projects", workNote: "Software, web, and game projects. Each one taught me something useful.", toolsAndPractice: "Tools and practice", whatIBring: "What I bring to the build.", allSkills: "All skills", skillsNote: "Technical skills and how I work with others.", curiosity: "Curiosity is part of the process", aLittleAboutMe: "A little about me.", exploreSkills: "Explore skills", projectInMind: "Have a project in mind?", letsBuildTogether: "Let's build something together!", madeWithCuriosity: "Made with curiosity", getInTouch: "Get in touch", archive: "Archive / All work", projectsIntro: "Software, web, and games: projects I have built and learned from.", findProject: "Find a project", filterType: "Filter by type", allWork: "All work", games: "Games", noProjects: "No projects match that search.", toolkit: "Tools / Ways of working", skillsIntro: "A clearer picture of the tools I use and how I work with a team.", hardSkills: "Hard skills", softSkills: "Soft skills", toolsTechniques: "Tools and techniques", howIWork: "How I work with people", usedIn: "Used in", experience: "Experience", skillsContext: "Skills are best understood in context.", seeInProjects: "See them in projects", backToProjects: "Back to projects", project: "Project", builtWith: "Built with", projectFormat: "Project format", released: "Date", projectAbout: "The project", game: "Inside the game, app or website", skillsInProject: "Project skills", watchVideo: "Watch the video", openYoutube: "Open on YouTube", playableBuild: "Playable build", openPlayable: "Open playable build", optionalEmbed: "Open the embedded build when you are ready to play.", tryIt: "Try it yourself.", selectedDetails: "Selected details", builtThenPlayed: "Inside the game, app or website", codeAndMedia: "Short code excerpts alongside project images.", excerpt: "excerpt", copyCode: "Copy code", copied: "Copied", selectCode: "Select code", moreMoments: "More moments", fromTheBuild: "From the project.", browseArchive: "Browse the archive", moreProjects: "More projects", resumeProfile: "Profile / Curriculum vitae", downloadPdf: "Download PDF", softwareSystems: "Software / Systems / Development", profile: "Profile", resumeExperience: "Experience", education: "Education", languages: "Languages", selectedWorkResume: "Selected work", personalInfoRequest: "Personal information available on request.", savePdfError: "Could not create the PDF. Please try again.", printPdf: "Resume / Curriculum vitae", software: "Software", web: "Web", languageName: "English", play: "Play", source: "Source", closeImage: "Close image viewer", previousImage: "Previous image", nextImage: "Next image"
+    switchLanguage: "Switch to Dutch", menu: "Menu", close: "Close navigation", navigate: "Navigate / Portfolio", overview: "Home", projects: "Projects", skills: "Skills", resume: "Resume", about: "About me", contact: "Contact", featuredProjects: "Highlighted projects", highlightedProjects: "Highlighted projects", startConversation: "Start a conversation", home: "Home", portfolio: "Portfolio", softwareAndSystems: "Software and systems", softwareTag: "SOFTWARE", systemsTag: "SYSTEMS", interactiveTag: "INTERACTIVE", aboutMarker: "ABOUT / 01", inMotion: "In motion", seeItPlay: "See it play.", exploreWork: "Explore my work", viewResume: "View resume", scrollToExplore: "Scroll to explore", selectedWork: "Selected work / 2024—2026", builtToWork: "Built to work.", allProjects: "All projects", workNote: "Software, web, and game projects. Each one taught me something useful.", toolsAndPractice: "Tools and practice", whatIBring: "What I bring to the build.", allSkills: "All skills", skillsNote: "Technical skills and how I work with others.", curiosity: "Curiosity is part of the process", aLittleAboutMe: "A little about me.", exploreSkills: "Explore skills", projectInMind: "Have a project in mind?", letsBuildTogether: "Let's build something together!", madeWithCuriosity: "Made with curiosity", getInTouch: "Get in touch", archive: "Archive / All work", projectsIntro: "Software, web, and games: projects I have built and learned from.", findProject: "Find a project", filterType: "Filter by type", allWork: "All work", games: "Games", noProjects: "No projects match that search.", toolkit: "Tools / Ways of working", skillsIntro: "A clearer picture of the tools I use and how I work with a team.", hardSkills: "Hard skills", softSkills: "Soft skills", toolsTechniques: "Tools and techniques", howIWork: "How I work with people", usedIn: "Used in", experience: "Experience", skillsContext: "Skills are best understood in context.", seeInProjects: "See them in projects", backToProjects: "Back to projects", project: "Project", builtWith: "Built with", projectFormat: "Project format", released: "Date", projectAbout: "The project",     game: "Inside the project", skillsInProject: "Project skills", watchVideo: "Watch the video", openYoutube: "Open on YouTube", playableBuild: "Playable build", openPlayable: "Open playable build", optionalEmbed: "Open the embedded build when you are ready to play.", tryIt: "Try it yourself.", selectedDetails: "Selected details", builtThenPlayed: "Inside the game, app or website", codeAndMedia: "Short code excerpts alongside project images.", excerpt: "excerpt", copyCode: "Copy code", copied: "Copied", selectCode: "Select code", moreMoments: "More moments", fromTheBuild: "From the project.", browseArchive: "Browse the archive", moreProjects: "More projects", resumeProfile: "Profile / Curriculum vitae", downloadPdf: "Download PDF", softwareSystems: "Software / Systems / Development", profile: "Profile", resumeExperience: "Experience", education: "Education", languages: "Languages", selectedWorkResume: "Selected work", personalInfoRequest: "Personal information available on request.", savePdfError: "Could not create the PDF. Please try again.", printPdf: "Resume / Curriculum vitae", software: "Software", web: "Web", languageName: "English", play: "Play", source: "Source", closeImage: "Close image viewer", previousImage: "Previous image", nextImage: "Next image"
 };
 
 Object.assign(window.PORTFOLIO_EN, {
     overview: "Home",
     featuredProjects: "Highlighted projects",
     highlightedProjects: "Highlighted projects",
-    letsBuildTogether: "Let's build something together!",
-    insideProject: "Inside the game, app or website",
+    letsBuildTogether: "Contact me!",
+    insideProject: "Inside the project",
     openPlayable: "Open playable build",
     optionalEmbed: "Open the embedded build whenever you're ready to play.",
     personalInfoRequest: "Personal information available on request.",
@@ -23,14 +23,24 @@ Object.assign(window.PORTFOLIO_EN, {
     filterHardSkills: "Filter hard skills",
     filterSoftSkills: "Filter soft skills",
     allSkillGroups: "All groups",
-    skillOrder: "Skill order",
-    bestToWorst: "Best to worst",
-    worstToBest: "Worst to best",
     skillWeb: "Web",
     skillSoftware: "Software",
     skillGame: "Game",
     skillTeam: "Team",
     skillSolo: "Solo",
     skillLeadership: "Leadership",
-    viewSource: "View source on GitHub"
+    viewSource: "View source on GitHub",
+    insideProject: "Inside the project",
+    builtThenPlayed: "Inside the code",
+    game: "Inside the project",
+    level: "Level",
+    experience: "Experience",
+    skillLevelAdvanced: "Advanced",
+    skillLevelWorking: "Working knowledge",
+    skillLevelPracticed: "Practiced",
+    skillLevelDeveloping: "Developing",
+    year: "year",
+    years: "years",
+    projectExperience: "Project experience",
+    professionalExperience: "Professional experience"
 });
